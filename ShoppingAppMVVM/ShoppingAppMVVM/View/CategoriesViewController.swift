@@ -12,6 +12,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var categoriesTableView: UITableView!
     private var  categoryListViewModel : CategoryListViewModel!
+ 
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +21,18 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         
-        WebService().dowloadCategory { list in
-            if let categoryList = list {
+        getData()
+    }
+    
+    
+    
+    func getData(){
+        WebService().dowloadCategory {  categoryList  in
+            if let categoryList = categoryList {
                 self.categoryListViewModel = CategoryListViewModel(categoryList: categoryList)
-                DispatchQueue.main.async {
+                Dispatch.DispatchQueue.main.async {
                     self.categoriesTableView.reloadData()
+                 
                 }
             }
         }
@@ -31,7 +40,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.categoryListViewModel == nil ? 0 : self.categoryListViewModel.numberOfRowInSection()
+        return  self.categoryListViewModel == nil ? 0  :  self.categoryListViewModel.numberOfRowInSection()
         
     }
     
@@ -47,7 +56,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     // If you click to category it will go to homePage
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.tabBarController?.viewControllers?[0] as! ViewController
-        vc.dad.text = "ca"
+        vc.dad.text = self.categoryListViewModel.categoryAtIndex(indexPath.row).categoryName
         self.tabBarController?.selectedIndex = 0
     }
     
@@ -57,10 +66,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         return "Categories"
     }
     
-    
 
-   
-    
-   
-   
 }
+
+

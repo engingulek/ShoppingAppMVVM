@@ -10,9 +10,15 @@ import Foundation
 
 struct CategoryListViewModel {
     var categoryList : [Category]
-    var shoppingAppRepo = ShoppingAppRepo()
+   
+
+     
+   
     
+    
+
     func numberOfRowInSection()-> Int {
+        
         return self.categoryList.count
     }
     
@@ -23,11 +29,10 @@ struct CategoryListViewModel {
         
         
     }
-    mutating func load() {
-        shoppingAppRepo.getAllCategoryFromDatabase()
-        self.categoryList = shoppingAppRepo.bringCategory()
-        
-    }
+    
+ 
+
+
     
     
 }

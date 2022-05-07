@@ -18,7 +18,6 @@
 		7D1A6BF82826A49D00D377EE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BF72826A49D00D377EE /* Category.swift */; };
 		7D1A6BFB2826A59A00D377EE /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BFA2826A59A00D377EE /* WebService.swift */; };
 		7D1A6BFF2826A96D00D377EE /* Categoryresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BFE2826A96D00D377EE /* Categoryresult.swift */; };
-		7D69534E2826BAA9003C0A3C /* ShoppingAppRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D69534D2826BAA9003C0A3C /* ShoppingAppRepo.swift */; };
 		7DE1428A2826B1FF00AEFBDB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE142892826B1FF00AEFBDB /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		7D1A6BF72826A49D00D377EE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7D1A6BFA2826A59A00D377EE /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		7D1A6BFE2826A96D00D377EE /* Categoryresult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categoryresult.swift; sourceTree = "<group>"; };
-		7D69534D2826BAA9003C0A3C /* ShoppingAppRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAppRepo.swift; sourceTree = "<group>"; };
 		7DE142892826B1FF00AEFBDB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +82,6 @@
 		7D1A6BDE28269BBC00D377EE /* ShoppingAppMVVM */ = {
 			isa = PBXGroup;
 			children = (
-				7DE1428B2826BA1100AEFBDB /* Repo */,
 				7DE142882826B1E700AEFBDB /* ViewModel */,
 				7D1A6BF92826A58A00D377EE /* Service */,
 				7D1A6BF62826A48F00D377EE /* Model */,
@@ -131,14 +128,6 @@
 				7DE142892826B1FF00AEFBDB /* CategoryViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		7DE1428B2826BA1100AEFBDB /* Repo */ = {
-			isa = PBXGroup;
-			children = (
-				7D69534D2826BAA9003C0A3C /* ShoppingAppRepo.swift */,
-			);
-			path = Repo;
 			sourceTree = "<group>";
 		};
 		7F5E82CB0C4A26D2BFB0B1C9 /* Frameworks */ = {
@@ -265,7 +254,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1A6BFB2826A59A00D377EE /* WebService.swift in Sources */,
-				7D69534E2826BAA9003C0A3C /* ShoppingAppRepo.swift in Sources */,
 				7D1A6BE428269BBC00D377EE /* ViewController.swift in Sources */,
 				7D1A6BFF2826A96D00D377EE /* Categoryresult.swift in Sources */,
 				7D1A6BF82826A49D00D377EE /* Category.swift in Sources */,
