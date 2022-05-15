@@ -8,9 +8,10 @@
 import Foundation
 
 struct Product : Decodable {
+    var _id:String
    var productName : String
-     var   productPrice : Int
-      var  productCategory: String // var  productCategory: Category
-       var  productImgUrl: String
-       var  productPiece : Int
+   var   productPrice : Int
+   var  productCategory: Category
+   var  productImgUrl: String
+    var  productPiece : Int 
 }

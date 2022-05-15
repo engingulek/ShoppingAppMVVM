@@ -9,6 +9,9 @@ import Foundation
 import Alamofire
 class WebService {
     
+    // MARK : Alamofire Requests
+    
+    /// Dowload Categories
     func dowloadCategory(completion:@escaping ([Category]?)->() ){
         let categoryUrl = "http://localhost:3000/categories"
         
@@ -35,30 +38,29 @@ class WebService {
 }
     
     
-    func dowloadProduct(categoryType:String,completion:@escaping ([Product]?)->() ){
+    /// Dowload Products
+    
+    func dowloadProducts(comletion:@escaping([Product]?)->()){
         let productUrl = "http://localhost:3000/products"
         
         Alamofire.request(productUrl,method: .get).responseJSON { response in
             if let data = response.data {
                 do {
                     let result = try JSONDecoder().decode(Productresult.self, from: data)
+                    
                     if let productList = result.productList {
-                        if categoryType == "Hepsi" {
-                            completion(productList)
-                        }else{
-                            let productFilter = productList.filter{$0.productCategory == categoryType}
-                            completion(productFilter)
-                            
-                        }
+                        comletion(productList)
                     }
                 }catch{
-                    completion(nil)
-                    
+                    comletion(nil)
+                    print(error.localizedDescription)
                 }
             }
         }
-        
     }
+    
+    
+  
     
     
 }

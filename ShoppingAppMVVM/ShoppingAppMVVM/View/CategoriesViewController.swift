@@ -28,6 +28,9 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        
+        
+   
 
         
         getData()
@@ -39,7 +42,7 @@ class CategoriesViewController: UIViewController {
     
     }
     
-    func getData(){
+   private func getData(){
         WebService().dowloadCategory {  categoryList  in
             if let categoryList = categoryList {
                
@@ -55,6 +58,7 @@ class CategoriesViewController: UIViewController {
             }
         }
     }
+    
     
     
     
@@ -93,6 +97,8 @@ extension CategoriesViewController : UITableViewDelegate, UITableViewDataSource 
         self.dismiss(animated: true,completion: nil)
         delegate?.selectedCategory(category: selectedCategory)
     }
+    
+   
 
     
 }
