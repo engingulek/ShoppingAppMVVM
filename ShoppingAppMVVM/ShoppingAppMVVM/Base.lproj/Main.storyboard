@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YO-E0-BfG">
-                                <rect key="frame" x="43" y="114" width="65" height="32.5"/>
+                                <rect key="frame" x="43" y="114" width="29.5" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,9 +26,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="5YO-E0-BfG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="uOb-6L-yqM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5YO-E0-BfG" secondAttribute="trailing" constant="306" id="uY6-fk-hvu"/>
-                            <constraint firstItem="5YO-E0-BfG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="vnT-eU-191"/>
+                            <constraint firstItem="5YO-E0-BfG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="NqI-Ni-B6b"/>
+                            <constraint firstItem="5YO-E0-BfG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="SKj-Fa-6nP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ana Sayfa" id="W7I-JW-IQP">
