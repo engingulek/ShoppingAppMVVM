@@ -9,12 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var dad: UILabel!
+    @IBOutlet weak var categoryTitle: UILabel!
+    var productListViewModel  : ProdutListViewModel!
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        dad.text = "test"
+        
+        
+        
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+      
+    }
+    @IBAction func filterAction(_ sender: Any) {
+        print(categoryTitle.text!)
+        
+    }
+    
+    @IBAction func allActionButton(_ sender: Any) {
+        
+    }
+    
+   
+    
 }
 

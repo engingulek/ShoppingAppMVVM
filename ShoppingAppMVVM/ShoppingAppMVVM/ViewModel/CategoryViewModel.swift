@@ -8,24 +8,27 @@
 import Foundation
 
 
-struct CategoryListViewModel {
-    var categoryList : [Category]
+class CategoryListViewModel {
+    var categoryList : [CategoryViewModel]
+    init() {
+        self.categoryList = [CategoryViewModel]()
+    }
    
 
      
+
    
     
     
 
-    func numberOfRowInSection()-> Int {
+   func numberOfRowInSection()-> Int {
         
         return self.categoryList.count
     }
     
     
     func categoryAtIndex(_ index:Int) -> CategoryViewModel{
-        let category = self.categoryList[index]
-        return CategoryViewModel(category: category)
+        return categoryList[index]
         
         
     }
