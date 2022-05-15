@@ -7,23 +7,31 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
-    
 
+protocol CategoryDelegate {
+    func selectedCategory(category:CategoryViewModel)
+}
+
+
+class CategoriesViewController: UIViewController {
+ 
     
     @IBOutlet weak var categoriesTableView: UITableView!
    // private var  categoryListViewModel : CategoryListViewModel!
     
     let categoryLitViewModel = CategoryListViewModel()
+    var delegate : CategoryDelegate?
+    
  
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
 
         
         getData()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
@@ -52,6 +60,17 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
  
     
+    
+  
+    
+  
+
+}
+
+
+extension CategoriesViewController : UITableViewDelegate, UITableViewDataSource  {
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -69,39 +88,13 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-  
-    
-    
-    /*func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.categoryListViewModel == nil ? 0  :  self.categoryListViewModel.numberOfRowInSection()
-        
-    }*/
-    
-    /*func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = categoriesTableView.dequeueReusableCell(withIdentifier: "catagoryCell", for: indexPath)
-        
-        let categortViewModel = self.categoryListViewModel.categoryAtIndex(indexPath.row)
-        cell.textLabel?.text = categortViewModel.categoryName
-        return cell
-        
-    }*/
-    // MARK: -Selected Categories
-    // If you click to category it will go to homePage
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.tabBarController?.viewControllers?[0] as! ViewController
-       
-        self.tabBarController?.selectedIndex = 0
-        
-        vc.categoryTitle.text = self.categoryListViewModel.categoryAtIndex(indexPath.row).categoryName
-    }*/
-    
-    
-    
-   /* func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Categories"
-    }*/
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCategory = categoryLitViewModel.categoryAtIndex(indexPath.row)
+        self.dismiss(animated: true,completion: nil)
+        delegate?.selectedCategory(category: selectedCategory)
+    }
 
+    
 }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xId-2H-Q63">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fYt-Im-3Vw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Ana Sayfa-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShoppingAppMVVM" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,90 +16,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVy-ba-D6d">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Ana Sayfa" id="Z9B-LA-y1w"/>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hepsi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xx8-Ve-J2E">
-                                <rect key="frame" x="20" y="131" width="108" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YO-E0-BfG">
+                                <rect key="frame" x="43" y="114" width="65" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3x-3S-sxW">
-                                <rect key="frame" x="307" y="127" width="79" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Hepsi"/>
-                                <connections>
-                                    <action selector="allActionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIs-rr-rb1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P94-in-0Ba">
-                                <rect key="frame" x="188" y="128" width="76" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Filtrele"/>
-                                <connections>
-                                    <action selector="filterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULj-Kz-SE3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xx8-Ve-J2E" secondAttribute="trailing" constant="286" id="1ly-81-tqY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F3x-3S-sxW" secondAttribute="trailing" constant="28" id="356-P3-uHg"/>
-                            <constraint firstItem="F3x-3S-sxW" firstAttribute="leading" secondItem="P94-in-0Ba" secondAttribute="trailing" constant="43" id="BN7-vf-Lbg"/>
-                            <constraint firstItem="F3x-3S-sxW" firstAttribute="top" secondItem="yVy-ba-D6d" secondAttribute="bottom" constant="39" id="HOM-66-erd"/>
-                            <constraint firstItem="P94-in-0Ba" firstAttribute="top" secondItem="yVy-ba-D6d" secondAttribute="bottom" constant="40" id="HUv-B5-icV"/>
-                            <constraint firstItem="Xx8-Ve-J2E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NO0-6g-emx"/>
-                            <constraint firstItem="yVy-ba-D6d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pir-F8-a1E"/>
-                            <constraint firstItem="P94-in-0Ba" firstAttribute="leading" secondItem="Xx8-Ve-J2E" secondAttribute="trailing" constant="60" id="Z7V-gu-dts"/>
-                            <constraint firstItem="F3x-3S-sxW" firstAttribute="leading" secondItem="Xx8-Ve-J2E" secondAttribute="trailing" constant="179" id="czq-pW-oQf"/>
-                            <constraint firstItem="yVy-ba-D6d" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="l0n-O1-C2E"/>
-                            <constraint firstItem="Xx8-Ve-J2E" firstAttribute="top" secondItem="yVy-ba-D6d" secondAttribute="bottom" constant="43" id="pJC-Ad-rXL"/>
-                            <constraint firstItem="yVy-ba-D6d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pgX-vq-x0K"/>
+                            <constraint firstItem="5YO-E0-BfG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="uOb-6L-yqM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5YO-E0-BfG" secondAttribute="trailing" constant="306" id="uY6-fk-hvu"/>
+                            <constraint firstItem="5YO-E0-BfG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="vnT-eU-191"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="hhI-Bi-E73"/>
+                    <navigationItem key="navigationItem" title="Ana Sayfa" id="W7I-JW-IQP">
+                        <barButtonItem key="rightBarButtonItem" title="Categories" id="f0p-Qr-1XZ">
+                            <connections>
+                                <segue destination="Kcd-qT-fPj" kind="presentation" identifier="toCategories" id="QuN-PP-D3R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="categoryTitle" destination="Xx8-Ve-J2E" id="i1Q-sU-XnC"/>
+                        <outlet property="categoryTitle" destination="5YO-E0-BfG" id="o5R-x1-BHK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="473.91304347826093" y="83.705357142857139"/>
+            <point key="canvasLocation" x="757" y="94"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="GbQ-V4-EGm">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xId-2H-Q63" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igg-fK-XuZ">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="zah-aE-eld"/>
-                        <segue destination="Hct-jB-1yL" kind="relationship" relationship="viewControllers" id="bpB-IV-DvY"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GqH-MT-NhG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-383" y="84"/>
-        </scene>
-        <!--Categories View Controller-->
+        <!--Categories-->
         <scene sceneID="4Ob-P6-lHw">
             <objects>
                 <viewController id="Hct-jB-1yL" customClass="CategoriesViewController" customModule="ShoppingAppMVVM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UPX-05-gGA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AYb-KH-ubc">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catagoryCell" id="cEa-R4-zCY">
@@ -122,14 +78,52 @@
                             <constraint firstItem="AYb-KH-ubc" firstAttribute="top" secondItem="Pu1-UV-c8E" secondAttribute="top" id="TgP-Rq-i24"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="circle.grid.2x2" catalog="system" id="6LA-or-upO"/>
+                    <navigationItem key="navigationItem" title="Categories" id="cRo-Zf-Lmp"/>
                     <connections>
                         <outlet property="categoriesTableView" destination="AYb-KH-ubc" id="v1I-lV-pD3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5a-4V-Dhn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-400.00000000000006" y="838.39285714285711"/>
+            <point key="canvasLocation" x="2526" y="94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pNv-0K-wAA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fYt-Im-3Vw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="hhI-Bi-E73"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oqc-Yr-1Ua">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="l5j-9x-YLY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQc-qh-dxM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-154" y="94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9qi-yI-PK7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kcd-qT-fPj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="circle.grid.2x2" catalog="system" id="6LA-or-upO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbC-gm-Gfr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hct-jB-1yL" kind="relationship" relationship="rootViewController" id="zhN-Vj-WKw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Fr-bh-zYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1554" y="94"/>
         </scene>
     </scenes>
     <resources>

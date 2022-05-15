@@ -13,13 +13,6 @@ class CategoryListViewModel {
     init() {
         self.categoryList = [CategoryViewModel]()
     }
-   
-
-     
-
-   
-    
-    
 
    func numberOfRowInSection()-> Int {
         

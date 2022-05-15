@@ -7,10 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,CategoryDelegate {
+    func selectedCategory(category: CategoryViewModel) {
+        categoryTitle.text = "\(category.categoryName)"
+    }
+    
 
     @IBOutlet weak var categoryTitle: UILabel!
-    var productListViewModel  : ProdutListViewModel!
+    
+   
     
    
     override func viewDidLoad() {
@@ -25,14 +30,22 @@ class ViewController: UIViewController {
         
       
     }
-    @IBAction func filterAction(_ sender: Any) {
-        print(categoryTitle.text!)
-        
-    }
     
-    @IBAction func allActionButton(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nav = segue.destination as? UINavigationController else
+        {
+            fatalError("nav error")
+        }
         
+        guard let homePageViewController = nav.viewControllers.first as? CategoriesViewController else {
+            fatalError("ViewController not found")
+        }
+        
+        homePageViewController.delegate = self
     }
+  
+    
+   
     
    
     
