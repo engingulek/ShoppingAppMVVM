@@ -24,7 +24,9 @@ class WebService {
                     
                     let result = try JSONDecoder().decode(Categoryresult.self, from: data)
                     
-                    if let categoryList = result.categoryList {
+                    if var categoryList = result.categoryList {
+                        let allCategory = Category(_id: "0", categoryName: "Hepsi")
+                        categoryList.insert(allCategory, at: 0)
                         completion(categoryList)
                     }
                 }catch{

@@ -12,6 +12,8 @@ class HomePageViewController: UIViewController,CategoryDelegate {
  
     @IBOutlet weak var categoryTitle: UILabel!
     @IBOutlet weak var productCollectionView : UICollectionView!
+    private var selectedCategory : CategoryViewModel? = nil
+ 
    
     // implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
@@ -28,12 +30,27 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     
     private func getData() {
         WebService().dowloadProducts { products in
+            
             if let products = products {
-                self.productListViewModel.productList = products.map(ProductViewModel.init)
+               
+                
+                if (self.selectedCategory != nil && self.selectedCategory?.categoryName != "Hepsi") {
+                    let productList = products.filter{
+                        $0.productCategory._id == self.selectedCategory?.categoryId
+                    }
+                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
+                }else{
+                    self.productListViewModel.productList = products.map(ProductViewModel.init)
+                    
+                }
+                
                 DispatchQueue.main.async {
                     self.productCollectionView.reloadData()
-                   
                 }
+                
+             
+                
+               
                 
             }
         }
@@ -42,6 +59,8 @@ class HomePageViewController: UIViewController,CategoryDelegate {
   
     func selectedCategory(category: CategoryViewModel) {
         categoryTitle.text = "\(category.categoryName)"
+        self.selectedCategory = category
+        getData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
