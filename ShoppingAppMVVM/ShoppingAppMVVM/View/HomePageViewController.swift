@@ -14,6 +14,8 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     @IBOutlet weak var productCollectionView : UICollectionView!
     private var selectedCategory : CategoryViewModel? = nil
     @IBOutlet weak var filterCollectionView : UICollectionView!
+    private var filterNameList = ["All","Woman","Man","Child","Unisex"]
+    private var selectedFilterName : String? = nil
  
    
     /// implement ProductListViewModel
@@ -45,7 +47,15 @@ class HomePageViewController: UIViewController,CategoryDelegate {
                         $0.productCategory._id == self.selectedCategory?.categoryId
                     }
                     self.productListViewModel.productList = productList.map(ProductViewModel.init)
-                }else{
+                }else if(self.selectedFilterName != nil && self.selectedFilterName != "All"){
+                    let productLit = products.filter{
+                        $0.productGender == self.selectedFilterName
+                    }
+                    
+                    self.productListViewModel.productList = productLit.map(ProductViewModel.init)
+                }
+                
+                else{
                     self.productListViewModel.productList = products.map(ProductViewModel.init)
                     
                 }
@@ -64,7 +74,6 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     }
   
     func selectedCategory(category: CategoryViewModel) {
-        categoryTitle.text = "\(category.categoryName)"
         self.selectedCategory = category
         getData()
     }
@@ -91,7 +100,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             
             return self.productListViewModel.productList.count == 0 ? 0 : self.productListViewModel.productList.count
         }else{
-            return 5
+            return filterNameList.count
         }
         
         
@@ -106,22 +115,26 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             let url = URL(string: "\(product.productImgUrl)")
             cell.productImageView.kf.setImage(with: url)
             cell.productNameLabel.text = product.productName
-            cell.productPriceLabel.text = "\(product.productPrice) ₺"
+            cell.productPriceLabel.text = "\(product.productPrice)"
+            cell.productGenderLabel.text = product.productGender
+            
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
            
             
             return cell
-        }else{
+        }else if(collectionView == self.filterCollectionView){
             let cell = self.filterCollectionView.dequeueReusableCell(withReuseIdentifier: "filterNameCell", for: indexPath) as! FilterCollectionViewCell
-            
-       
+        
+            cell.filterName.text = filterNameList[indexPath.row]
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
             return cell
             
+        }else{
+            fatalError("Not collectionView")
         }
         
      
@@ -149,8 +162,8 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         let designFCV :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
         let widthFCV = self.filterCollectionView.frame.size.width
-        let cellWidthFCV = (widthFCV-30)/3
-        designFCV.itemSize = CGSize(width: cellWidthFCV, height: self.filterCollectionView.frame.size.height/1.5)
+        let cellWidthFCV = (widthFCV-30)/3.5
+        designFCV.itemSize = CGSize(width: cellWidthFCV, height: self.filterCollectionView.frame.size.height/2)
         designFCV.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10)
         
       
@@ -162,10 +175,20 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         
        filterCollectionView.collectionViewLayout = designFCV
         
-      
-        
-        
-        
+    }
+    
+    
+    //collectionView cell didSelect
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.filterCollectionView {
+            self.selectedFilterName = self.filterNameList[indexPath.row]
+            getData()
+            
+            
+        }else{
+            fatalError("Don't select collection view")
+        }
     }
     
 }

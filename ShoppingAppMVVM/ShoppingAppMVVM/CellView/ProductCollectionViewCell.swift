@@ -13,5 +13,6 @@ class ProductCollectionViewCell : UICollectionViewCell {
     @IBOutlet weak var addCartButton : UIButton!
     @IBOutlet weak var productNameLabel : UILabel!
     @IBOutlet weak var productPriceLabel : UILabel!
+    @IBOutlet weak var productGenderLabel : UILabel!
     
 }

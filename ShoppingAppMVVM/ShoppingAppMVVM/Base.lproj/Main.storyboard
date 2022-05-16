@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hepsi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YO-E0-BfG">
-                                <rect key="frame" x="43" y="114" width="67.5" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="xsJ-dc-EXm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WdW-Ed-sGW">
                                 <rect key="frame" x="0.0" y="233" width="414" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -69,6 +60,12 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="Sepete Ekle"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rh0-yq-aVK">
+                                                    <rect key="frame" x="67.5" y="238" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -77,6 +74,8 @@
                                             <constraint firstItem="KiT-2t-l1n" firstAttribute="centerX" secondItem="E96-Vd-Kry" secondAttribute="centerX" id="DDy-Qp-tHL"/>
                                             <constraint firstItem="TJs-6L-JFw" firstAttribute="centerX" secondItem="E96-Vd-Kry" secondAttribute="centerX" id="I4M-vz-Vx8"/>
                                             <constraint firstItem="gP9-K7-GV7" firstAttribute="leading" secondItem="E96-Vd-Kry" secondAttribute="leadingMargin" constant="27" id="Jce-mV-DIT"/>
+                                            <constraint firstItem="Rh0-yq-aVK" firstAttribute="centerX" secondItem="E96-Vd-Kry" secondAttribute="centerX" id="K4n-te-YVK"/>
+                                            <constraint firstItem="Rh0-yq-aVK" firstAttribute="top" secondItem="TJs-6L-JFw" secondAttribute="bottom" constant="10" id="MMN-g9-aGv"/>
                                             <constraint firstItem="KiT-2t-l1n" firstAttribute="top" secondItem="gP9-K7-GV7" secondAttribute="bottom" constant="16" id="P7c-XC-Q3R"/>
                                             <constraint firstItem="lZN-CR-PEm" firstAttribute="leading" secondItem="E96-Vd-Kry" secondAttribute="leadingMargin" constant="30" id="XKb-cu-J2h"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="lZN-CR-PEm" secondAttribute="bottom" constant="12" id="apd-J3-4eV"/>
@@ -85,6 +84,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="addCartButton" destination="lZN-CR-PEm" id="fJw-Rp-CAT"/>
+                                            <outlet property="productGenderLabel" destination="Rh0-yq-aVK" id="FEV-oe-Fsc"/>
                                             <outlet property="productImageView" destination="gP9-K7-GV7" id="XI6-QO-P9Q"/>
                                             <outlet property="productNameLabel" destination="KiT-2t-l1n" id="uEo-Nu-lEs"/>
                                             <outlet property="productPriceLabel" destination="TJs-6L-JFw" id="zI8-vL-Nzs"/>
@@ -93,7 +93,7 @@
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8ld-1H-Vyv">
-                                <rect key="frame" x="0.0" y="155" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="105"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lVG-pr-Faj">
                                     <size key="itemSize" width="127" height="67"/>
@@ -132,14 +132,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WdW-Ed-sGW" firstAttribute="top" secondItem="8ld-1H-Vyv" secondAttribute="bottom" constant="8" symbolic="YES" id="9xV-Gq-qD9"/>
-                            <constraint firstItem="5YO-E0-BfG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="ARF-CO-SQl"/>
                             <constraint firstItem="WdW-Ed-sGW" firstAttribute="leading" secondItem="8ld-1H-Vyv" secondAttribute="leading" id="U5U-4a-ukj"/>
                             <constraint firstAttribute="bottom" secondItem="WdW-Ed-sGW" secondAttribute="bottom" id="WK1-Ru-Kye"/>
                             <constraint firstItem="8ld-1H-Vyv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eNb-k0-0BC"/>
-                            <constraint firstItem="8ld-1H-Vyv" firstAttribute="top" secondItem="5YO-E0-BfG" secondAttribute="bottom" constant="8" symbolic="YES" id="gII-1e-5Lm"/>
                             <constraint firstItem="8ld-1H-Vyv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ghh-gO-rUQ"/>
-                            <constraint firstItem="5YO-E0-BfG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="m57-EG-KeO"/>
+                            <constraint firstItem="8ld-1H-Vyv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gti-Ju-z1y"/>
+                            <constraint firstItem="WdW-Ed-sGW" firstAttribute="top" secondItem="8ld-1H-Vyv" secondAttribute="bottom" constant="20" id="upY-Kw-dHN"/>
                             <constraint firstItem="WdW-Ed-sGW" firstAttribute="trailing" secondItem="8ld-1H-Vyv" secondAttribute="trailing" id="xlp-sU-L4G"/>
                         </constraints>
                     </view>
@@ -151,7 +149,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="categoryTitle" destination="5YO-E0-BfG" id="o5R-x1-BHK"/>
                         <outlet property="filterCollectionView" destination="8ld-1H-Vyv" id="WkF-yD-hCV"/>
                         <outlet property="productCollectionView" destination="WdW-Ed-sGW" id="KHR-0R-DSq"/>
                     </connections>

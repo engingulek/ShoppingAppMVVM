@@ -55,6 +55,10 @@ struct ProductViewModel {
         return self.product.productPiece
         
     }
+    
+    var productGender: String {
+        return self.product.productGender
+    }
 }
 
 

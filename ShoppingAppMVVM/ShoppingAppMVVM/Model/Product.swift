@@ -13,5 +13,6 @@ struct Product : Decodable {
    var   productPrice : Int
    var  productCategory: Category
    var  productImgUrl: String
-    var  productPiece : Int 
+    var  productPiece : Int
+    var productGender : String
 }
