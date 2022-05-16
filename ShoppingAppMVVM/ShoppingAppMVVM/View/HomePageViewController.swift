@@ -10,18 +10,22 @@ import Kingfisher
 
 class HomePageViewController: UIViewController,CategoryDelegate {
  
-    @IBOutlet weak var categoryTitle: UILabel!
+    
     @IBOutlet weak var productCollectionView : UICollectionView!
     private var selectedCategory : CategoryViewModel? = nil
     @IBOutlet weak var filterCollectionView : UICollectionView!
     private var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
+    private var selectedSortType : Bool? =  nil
+    
+    
  
    
     /// implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         getData()
         
         
@@ -32,9 +36,34 @@ class HomePageViewController: UIViewController,CategoryDelegate {
         filterCollectionView.delegate = self
         setupUI()
         
-        super.viewDidLoad()
+       
+        
+        
     }
     
+    @IBAction func sortTypeVisibility(_ sender: Any) {
+        let sortTypeActionSheet = UIAlertController(title: "Sort Type", message: "Please Select an Sort Type", preferredStyle: .actionSheet)
+        sortTypeActionSheet.addAction(UIAlertAction(title: "Price Growing", style: .default, handler: { (_) in
+            self.selectedSortType = true
+            self.getData()
+               }))
+
+        sortTypeActionSheet.addAction(UIAlertAction(title: "Price Decreasing", style: .default, handler: { (_) in
+            self.selectedSortType = false
+            self.getData()
+               }))
+
+    
+        sortTypeActionSheet.addAction(UIAlertAction(title: "Close", style: .destructive, handler: { (_) in
+            self.selectedSortType = nil
+               }))
+        
+        self.present(sortTypeActionSheet, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
+   
     /// fetchCategory
     private func getData() {
         WebService().dowloadProducts { products in
@@ -48,11 +77,21 @@ class HomePageViewController: UIViewController,CategoryDelegate {
                     }
                     self.productListViewModel.productList = productList.map(ProductViewModel.init)
                 }else if(self.selectedFilterName != nil && self.selectedFilterName != "All"){
-                    let productLit = products.filter{
+                    let productList = products.filter{
                         $0.productGender == self.selectedFilterName
                     }
                     
-                    self.productListViewModel.productList = productLit.map(ProductViewModel.init)
+                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
+                }else if (self.selectedSortType == true) {
+                    let productList = products.sorted (by: {$0.productPrice < $1.productPrice})
+                    
+                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
+                }
+                
+                else if (self.selectedSortType == false) {
+                    let productList = products.sorted (by: {$0.productPrice > $1.productPrice})
+                    
+                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
                 }
                 
                 else{
@@ -62,6 +101,9 @@ class HomePageViewController: UIViewController,CategoryDelegate {
                 
                 DispatchQueue.main.async {
                     self.productCollectionView.reloadData()
+                    self.selectedSortType = nil
+                    self.selectedFilterName = nil
+                    self.selectedCategory = nil
                 }
                 
              
