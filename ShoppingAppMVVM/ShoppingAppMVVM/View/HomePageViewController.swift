@@ -13,21 +13,27 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     @IBOutlet weak var categoryTitle: UILabel!
     @IBOutlet weak var productCollectionView : UICollectionView!
     private var selectedCategory : CategoryViewModel? = nil
+    @IBOutlet weak var filterCollectionView : UICollectionView!
  
    
-    // implement ProductListViewModel
+    /// implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
     
     override func viewDidLoad() {
         getData()
-        setupUI()
+        
         
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
         
+        filterCollectionView.dataSource = self
+        filterCollectionView.delegate = self
+        setupUI()
+        
         super.viewDidLoad()
     }
     
+    /// fetchCategory
     private func getData() {
         WebService().dowloadProducts { products in
             
@@ -77,58 +83,93 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     }
 }
 
-
+///Category CollectionView
+///  FilterList CollectionView
 extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.productListViewModel.productList.count
+        if collectionView == self.productCollectionView {
+            
+            return self.productListViewModel.productList.count == 0 ? 0 : self.productListViewModel.productList.count
+        }else{
+            return 5
+        }
+        
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.productCollectionView.dequeueReusableCell(withReuseIdentifier: "productCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
-        
-        let product = self.productListViewModel.cellForItemAt(indexPath.row)
-        let url = URL(string: "\(product.productImgUrl)")
-        cell.productImageView.kf.setImage(with: url)
-        cell.productNameLabel.text = product.productName
-        cell.productPriceLabel.text = "\(product.productPrice) ₺"
-        
-        
-        
-        
-        
+        if collectionView == self.productCollectionView   {
+            let cell = self.productCollectionView.dequeueReusableCell(withReuseIdentifier: "productCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
+            
+            let product = self.productListViewModel.cellForItemAt(indexPath.row)
+            let url = URL(string: "\(product.productImgUrl)")
+            cell.productImageView.kf.setImage(with: url)
+            cell.productNameLabel.text = product.productName
+            cell.productPriceLabel.text = "\(product.productPrice) ₺"
+            cell.layer.borderColor = UIColor.lightGray.cgColor
+            cell.layer.borderWidth = 0.5
+            cell.layer.cornerRadius = 10.0
+           
+            
+            return cell
+        }else{
+            let cell = self.filterCollectionView.dequeueReusableCell(withReuseIdentifier: "filterNameCell", for: indexPath) as! FilterCollectionViewCell
+            
+       
+            cell.layer.borderColor = UIColor.lightGray.cgColor
+            cell.layer.borderWidth = 0.5
+            cell.layer.cornerRadius = 10.0
+            return cell
+            
+        }
         
      
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.borderWidth = 0.5
-        cell.layer.cornerRadius = 10.0
         
-        return cell
+        
     }
     
     
     private func setupUI(){
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
-        let width = self.productCollectionView.frame.size.width
-        
+        let widthPCV = self.productCollectionView.frame.size.width
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        let cellWidth = (width-30)/2
+        let cellWidthPVC = (widthPCV-30)/2
         
-        design.itemSize = CGSize(width: cellWidth, height: cellWidth*1.7)
+        design.itemSize = CGSize(width: cellWidthPVC, height: cellWidthPVC*1.7)
         
         design.minimumInteritemSpacing = 10
         design.minimumLineSpacing = 10
         
         productCollectionView.collectionViewLayout = design
+        
+        
+        let designFCV :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        let widthFCV = self.filterCollectionView.frame.size.width
+        let cellWidthFCV = (widthFCV-30)/3
+        designFCV.itemSize = CGSize(width: cellWidthFCV, height: self.filterCollectionView.frame.size.height/1.5)
+        designFCV.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10)
+        
+      
+        
+        designFCV.minimumInteritemSpacing = 20
+        designFCV.minimumLineSpacing = 10
+        designFCV.scrollDirection = .horizontal
+ 
+        
+       filterCollectionView.collectionViewLayout = designFCV
+        
+      
+        
+        
+        
     }
     
-
-    
-    
-    
-    
-    
-    
 }
+
+
+
 
