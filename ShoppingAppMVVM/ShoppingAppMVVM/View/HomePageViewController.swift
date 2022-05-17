@@ -13,10 +13,12 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     
     @IBOutlet weak var productCollectionView : UICollectionView!
     private var selectedCategory : CategoryViewModel? = nil
+    
     @IBOutlet weak var filterCollectionView : UICollectionView!
     private var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
     private var selectedSortType : Bool? =  nil
+   
     
     
     
@@ -24,6 +26,10 @@ class HomePageViewController: UIViewController,CategoryDelegate {
    
     /// implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
+    
+
+   
+    
 
     
     override func viewDidLoad() {
@@ -140,24 +146,7 @@ class HomePageViewController: UIViewController,CategoryDelegate {
 ///Category CollectionView
 ///  FilterList CollectionView
 extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource,ProductCollectinViewCellDelegate{
-    func addProduct(indexPath: IndexPath) {
-        
-        let addProduct = self.productListViewModel.cellForItemAt(indexPath.row)
-        
-          let cartListUserId = "TestUserID"
-        let category = Category(_id:addProduct.productCategory._id, categoryName: addProduct.productCategory.categoryName)
-        let cartList = CartProductList(cartProductId: addProduct._id, cartproductName: addProduct.productName, cartproductPrice: addProduct.productPrice, cartproductCategory: category, cartproductImgUrl: addProduct.productImgUrl, cartproductPiece: addProduct.productPiece)
-           
-          
-           
-           WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
-               if result == nil {
-                   print("Error")
-               }else{
-                   print("Add Success")
-               }
-           }
-    }
+  
     
   
     
@@ -281,6 +270,36 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         else{
             fatalError("Don't select collection view")
         }
+    }
+    
+    func addProduct(indexPath: IndexPath) {
+        /*
+         MARK : Adet Sayısı Artmama Sorunu
+         Ürün eklendiği zaman tekrak eklenmektedir. Yani adet sayısı artmamaktadır. Bunu gerçekleştiren kod server tarafında yer almadığı için
+         bu işlemi gerçekleştirecek kod burada yazılacaktır.
+         */
+        
+        /// 1. işlem ilk önce
+        /// Tüm sepetin alınması gerekmektedir.
+   
+        
+        
+        
+        let addProduct = self.productListViewModel.cellForItemAt(indexPath.row)
+        
+          let cartListUserId = "TestUserID"
+        let category = Category(_id:addProduct.productCategory._id, categoryName: addProduct.productCategory.categoryName)
+        let cartList = CartProductList(cartProductId: addProduct._id, cartproductName: addProduct.productName, cartproductPrice: addProduct.productPrice, cartproductCategory: category, cartproductImgUrl: addProduct.productImgUrl, cartproductPiece: addProduct.productPiece)
+           
+          
+           
+           /*WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
+               if result == nil {
+                   print("Error")
+               }else{
+                   print("Add Success")
+               }
+           }*/
     }
     
    

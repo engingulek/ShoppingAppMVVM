@@ -9,6 +9,8 @@ import Foundation
 
 
 struct CartList : Codable {
-    var cartListUserId:String?
-    var cartList:[CartProductList]?
+    
+    var _id:String
+    var cartListUserId:String
+    var cartList:[CartProductList]
 }
