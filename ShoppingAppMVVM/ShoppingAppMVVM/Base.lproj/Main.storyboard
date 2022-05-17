@@ -59,6 +59,9 @@
                                                     <rect key="frame" x="38" y="269" width="101" height="31"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="Sepete Ekle"/>
+                                                    <connections>
+                                                        <action selector="addCartButtonAction:" destination="E96-Vd-Kry" eventType="touchUpInside" id="acA-sB-Wku"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rh0-yq-aVK">
                                                     <rect key="frame" x="67.5" y="238" width="42" height="21"/>
@@ -350,6 +353,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1zf-M7-1ha"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BxL-Ve-vsj" firstAttribute="centerY" secondItem="NAW-2n-Rdk" secondAttribute="centerY" id="6wu-oP-ZEp"/>

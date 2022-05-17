@@ -17,7 +17,8 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     private var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
     private var selectedSortType : Bool? =  nil
-    @IBOutlet weak var addProductToCartButton : UIButton!
+    
+    
     
  
    
@@ -138,7 +139,28 @@ class HomePageViewController: UIViewController,CategoryDelegate {
 
 ///Category CollectionView
 ///  FilterList CollectionView
-extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource{
+extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource,ProductCollectinViewCellDelegate{
+    func addProduct(indexPath: IndexPath) {
+        
+        let addProduct = self.productListViewModel.cellForItemAt(indexPath.row)
+        
+          let cartListUserId = "TestUserID"
+        let category = Category(_id:addProduct.productCategory._id, categoryName: addProduct.productCategory.categoryName)
+        let cartList = CartProductList(cartProductId: addProduct._id, cartproductName: addProduct.productName, cartproductPrice: addProduct.productPrice, cartproductCategory: category, cartproductImgUrl: addProduct.productImgUrl, cartproductPiece: addProduct.productPiece)
+           
+          
+           
+           WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
+               if result == nil {
+                   print("Error")
+               }else{
+                   print("Add Success")
+               }
+           }
+    }
+    
+  
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.productCollectionView {
             
@@ -161,10 +183,16 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             cell.productNameLabel.text = product.productName
             cell.productPriceLabel.text = "\(product.productPrice)"
             cell.productGenderLabel.text = product.productGender
+            cell.indexPath = indexPath
+            cell.delegate = self
+            
+           
+            
             
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
+            
             
           
             
@@ -189,6 +217,13 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         
         
     }
+    
+    
+    
+    
+ 
+
+  
     
     
     private func setupUI(){
@@ -230,33 +265,25 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.filterCollectionView {
+            
             self.selectedFilterName = self.filterNameList[indexPath.row]
             getData()
             
-            
-            let cartListUserId = "UserID"
-            let a = Category(_id: "a", categoryName: "da")
-            let cartList = CartProductList(cartProductId: "da", cartproductName: "da", cartproductPrice: 3, cartproductCategory: a, cartproductImgUrl: "dad", cartproductPiece: 3)
-            
-           
-            
-            WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
-                if result == nil {
-                    print("Error")
-                }else{
-                    print("Add Success")
-                }
-            }
+        }else if (collectionView == self.productCollectionView) {
             
             
+        
             
-            
-            
-        }else{
+        }
+        
+        
+        
+        else{
             fatalError("Don't select collection view")
         }
     }
     
+   
 }
 
 
