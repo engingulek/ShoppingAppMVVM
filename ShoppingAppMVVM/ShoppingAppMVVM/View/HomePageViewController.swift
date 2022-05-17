@@ -17,12 +17,13 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     private var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
     private var selectedSortType : Bool? =  nil
-    
+    @IBOutlet weak var addProductToCartButton : UIButton!
     
  
    
     /// implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class HomePageViewController: UIViewController,CategoryDelegate {
         filterCollectionView.dataSource = self
         filterCollectionView.delegate = self
         setupUI()
+        
         
        
         
@@ -163,6 +165,10 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
+            
+          
+            
+            
            
             
             return cell
@@ -226,6 +232,24 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         if collectionView == self.filterCollectionView {
             self.selectedFilterName = self.filterNameList[indexPath.row]
             getData()
+            
+            
+            let cartListUserId = "UserID"
+            let a = Category(_id: "a", categoryName: "da")
+            let cartList = CartProductList(cartProductId: "da", cartproductName: "da", cartproductPrice: 3, cartproductCategory: a, cartproductImgUrl: "dad", cartproductPiece: 3)
+            
+           
+            
+            WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
+                if result == nil {
+                    print("Error")
+                }else{
+                    print("Add Success")
+                }
+            }
+            
+            
+            
             
             
         }else{

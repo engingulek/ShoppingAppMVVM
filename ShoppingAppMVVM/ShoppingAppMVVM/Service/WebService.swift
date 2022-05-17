@@ -62,6 +62,51 @@ class WebService {
     }
     
     
+    // post cartList-> Add Product to Cart
+    
+    func addProducToCart(cartListUserId
+                         :String,cartList:CartProductList,completion:@escaping(String?)->()){
+        let addProductCartUrl = "http://localhost:3000/postCartList"
+       
+    
+       // let parameters = ["cartListUserId":cartListUserId,"cartList":[cartList]] as [String : Any]
+        
+        let parameters : [String:Any] = [
+            "cartListUserId":cartListUserId,
+            "cartList":[
+                ["cartProductId":cartList.cartProductId,
+                 "cartproductName":cartList.cartproductImgUrl,
+                 "cartproductPrice":cartList.cartproductPrice,
+                 "cartproductCategory":["_id":cartList.cartproductCategory._id,"categoryName":cartList.cartproductCategory.categoryName],
+                 "cartproductImgUrl":cartList.cartproductImgUrl,
+                 "cartproductPiece":cartList.cartproductPiece
+                
+                ]
+               
+            ]
+        ]
+       
+        
+     
+       
+       
+        Alamofire.request(addProductCartUrl,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
+            if let data  = response.data{
+                do{
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                        print(json)
+                        completion("Success")
+                    }
+                }catch{
+                    print(error.localizedDescription)
+                    completion(nil)
+                }
+            }
+            
+        }
+    }
+    
+    
   
     
     
