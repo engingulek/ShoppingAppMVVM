@@ -246,11 +246,11 @@
             </objects>
             <point key="canvasLocation" x="756.52173913043487" y="93.75"/>
         </scene>
-        <!--Item-->
+        <!--Home Page-->
         <scene sceneID="CBc-qA-Zhn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X5W-nQ-ViA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QLS-Jf-Rqv"/>
+                    <tabBarItem key="tabBarItem" title="Home Page" image="house.fill" catalog="system" id="QLS-Jf-Rqv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V7X-hP-sAa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -412,11 +412,11 @@
             </objects>
             <point key="canvasLocation" x="1666.6666666666667" y="813.61607142857144"/>
         </scene>
-        <!--Item-->
+        <!--Cart-->
         <scene sceneID="le5-sY-9CB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iwq-r7-dqr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="yiR-fB-yHN"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="cart.fill" catalog="system" id="yiR-fB-yHN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Sx-f2-M3h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -433,7 +433,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

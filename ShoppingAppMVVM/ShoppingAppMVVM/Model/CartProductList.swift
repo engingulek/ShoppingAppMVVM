@@ -9,10 +9,10 @@ import Foundation
 
 struct CartProductList : Codable{
    var cartProductId:String
-   var cartproductName :String
-   var cartproductPrice : Int
-   var cartproductCategory: Category
-   var cartproductImgUrl:String
-   var cartproductPiece :Int
+   var cartProductName :String
+   var cartProductPrice : Int
+   var cartProductCategory: Category
+   var cartProductImgUrl:String
+   var cartProductPiece :Int
     
 }

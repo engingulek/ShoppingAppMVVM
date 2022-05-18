@@ -75,11 +75,11 @@ class WebService {
             "cartListUserId":cartListUserId,
             "cartList":[
                 ["cartProductId":cartList.cartProductId,
-                 "cartproductName":cartList.cartproductName,
-                 "cartproductPrice":cartList.cartproductPrice,
-                 "cartproductCategory":["_id":cartList.cartproductCategory._id,"categoryName":cartList.cartproductCategory.categoryName],
-                 "cartproductImgUrl":cartList.cartproductImgUrl,
-                 "cartproductPiece":cartList.cartproductPiece
+                 "cartproductName":cartList.cartProductName,
+                 "cartproductPrice":cartList.cartProductPrice,
+                 "cartproductCategory":["_id":cartList.cartProductCategory._id,"categoryName":cartList.cartProductCategory.categoryName],
+                 "cartproductImgUrl":cartList.cartProductImgUrl,
+                 "cartproductPiece":cartList.cartProductPiece
                 
                 ]
                
@@ -109,7 +109,7 @@ class WebService {
     
     // get cart list
     
-    func dowloadCartList(cartListUserId:String,comletion:@escaping([CartList]?)->()){
+    func dowloadCartList(comletion:@escaping([CartList]?)->()){
         let dowloadCartListUrl = "http://localhost:3000/getCartList"
         Alamofire.request(dowloadCartListUrl,method: .get).responseJSON { response in
             if let data = response.data {

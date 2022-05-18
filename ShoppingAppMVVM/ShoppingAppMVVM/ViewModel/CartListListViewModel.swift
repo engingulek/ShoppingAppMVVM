@@ -7,81 +7,87 @@
 
 import Foundation
 
-class CartListListViewModel {
-    var cartListListViewModel : [CartListViewModel]
+
+struct CartListResultViewModel {
+    var cartListResult : [CartListViewModel]
     
     init(){
-        self.cartListListViewModel = [CartListViewModel]()
+        self.cartListResult = [CartListViewModel]()
     }
     
-    func cartProductList()-> [CartProductList] {
-        return self.cartListListViewModel[0].cartsList
-    }
     
+   
+    
+    
+    
+    
+   
 }
-
-
 
 
 
 struct CartListViewModel {
     var cartList : CartList
     
-    
-    var cartListId:String {
-        return cartList._id
+    var _id:String {
+       return cartList._id
     }
-    var cartListUserIdId:String {
-        return cartList.cartListUserId
+    var cartListUserId:String {
+      return  cartList.cartListUserId
     }
-    
-    var cartsList:[CartProductList] {
-        return self.cartList.cartList
+    var cartProductList:[CartProductList] {
+        return cartList.cartList
     }
 }
 
 
-class CartProductListListViewModel {
-    var cartProdutListListViewModel : [CartProductListViewModel]
-    init(){
-        self.cartProdutListListViewModel = [CartProductListViewModel]()
-    }
-    
-    func numberOfRowSection()->Int {
-        return self.cartProdutListListViewModel.count
-    }
-    
-    func cellRowAt(_ index:Int) -> CartProductListViewModel {
-        return self.cartProdutListListViewModel[index]
-    }
-    
-    
-}
+
 
 struct CartProductListViewModel {
+    var cartProductList : [CartProductList]
+    init(){
+        self.cartProductList = [CartProductList]()
+    }
+    
+    func cartProductListCount() -> Int{
+        return self.cartProductList.count
+    }
+    
+    func cellRowAt(index:Int) -> CartProductViewModel {
+        return CartProductViewModel(cartProductList: self.cartProductList[index])
+    }
+    
+}
+
+
+
+struct CartProductViewModel{
     var cartProductList : CartProductList
-    var cartProductId:String{
+    
+    
+    
+    
+    var cartProductId:String {
         return cartProductList.cartProductId
-        
     }
-    var cartproductName :String{
-        return cartProductList.cartproductName
-        
+    var cartProductName :String{
+        return cartProductList.cartProductName
     }
-    var cartproductPrice : Int{
-        return cartProductList.cartproductPrice
-        
+    var cartProductPrice : Int {
+        return cartProductList.cartProductPiece
     }
-    var cartproductCategory: Category{
-        return cartProductList.cartproductCategory
-        
+    var cartProductCategory: Category {
+        return cartProductList.cartProductCategory
     }
-    var cartproductImgUrl:String{
-        return cartProductList.cartproductImgUrl
-        
+    
+    var cartProductImgUrl:String{
+        return cartProductList.cartProductImgUrl
     }
-    var cartproductPiece :Int{
-        return cartProductList.cartproductPiece
-        
+    var cartProductPiece :Int{
+        return cartProductList.cartProductPiece
     }
 }
+
+
+
+

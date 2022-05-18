@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ShoppingCartViewControllerDelegete {
-    func getCartProductList(cartProductListListVM:CartProductListListViewModel)
-}
+
 
 class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDelegete{
     func deleteProductFromShopCart(indexPath: IndexPath) {
@@ -27,11 +25,11 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     
     /// implement CartListListViewModel
     /// Kullanıcının oluşturuduğu sepetin alınması için
-    var cartListListViewModel = CartListListViewModel()
-    var delegate : ShoppingCartViewControllerDelegete?
-    
+ 
+    //var delegate : ShoppingCartViewControllerDelegete?
+    var cartListResultViewModel = CartListResultViewModel()
+    var cartProductListViewModel = CartProductListViewModel()
     /// Kullancının oluştruduğu sepetin içindeki ürünlerin alınması içi
-    var cartProductListListViewModel = CartProductListListViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
@@ -48,13 +46,35 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     
     
     func getData() {
-        WebService().dowloadCartList(cartListUserId: "TestUserID") { cartList in
+        WebService().dowloadCartList { cartList in
             if let cartList = cartList {
-                self.cartListListViewModel.cartListListViewModel = cartList.map(CartListViewModel.init)
+                
+                let checkUserIdFilter = cartList.filter{
+                    $0.cartListUserId == "TestUserID"
+                }
+                
+                // Zaten her kullanıcının bir tane olacağı için 0. indeks ile çağrılmıştır
+               
+                self.cartListResultViewModel.cartListResult = checkUserIdFilter.map(CartListViewModel.init)
+                
+                
+              
+                
+              
+              
+
+                
+                
+               
+                
+                
+                
+                
                 DispatchQueue.main.async {
-                    self.cartProductListListViewModel.cartProdutListListViewModel =
-                    self.cartListListViewModel.cartProductList().map(CartProductListViewModel.init)
-                    print(self.cartProductListListViewModel.numberOfRowSection())
+                    self.cartProductListViewModel.cartProductList =
+                    self.cartListResultViewModel.cartListResult[0].cartProductList
+                   
+                    
                     self.shoppingCartCollectionView.reloadData()
                  
                     
@@ -94,21 +114,28 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
 
 extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.cartProductListListViewModel.numberOfRowSection()
+        print("Cell test \(self.cartProductListViewModel.cartProductListCount())")
+        return  self.cartProductListViewModel.cartProductListCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = shoppingCartCollectionView.dequeueReusableCell(withReuseIdentifier: "shopCarCell", for: indexPath) as! ShopCartCollectionViewCell
         
-        let cartProduct = self.cartProductListListViewModel.cellRowAt(indexPath.row)
-        let imageUrl = URL(string: "\(cartProduct.cartproductImgUrl)")
+        let cartProduct = self.cartProductListViewModel.cellRowAt(index: indexPath.row)
+        print("Cell Item :\(cartProduct.cartProductName)")
+       
+        
+       
+        let imageUrl = URL(string: "\(cartProduct.cartProductImgUrl)")
         cell.shopCartProductImageVew.kf.setImage(with: imageUrl)
-        cell.shopCartProductName.text = cartProduct.cartproductName
-        cell.shopCartProductPiece.text = "\(cartProduct.cartproductPiece)"
-        cell.shopCartProductPrice.text = "\(cartProduct.cartproductPrice)"
-        cell.shopCartProductCategory.text = "\(cartProduct.cartproductCategory.categoryName)"
+        cell.shopCartProductName.text = cartProduct.cartProductName
+       cell.shopCartProductPiece.text = "\(cartProduct.cartProductPiece)"
+        cell.shopCartProductPrice.text = "\(cartProduct.cartProductPrice)"
+        cell.shopCartProductCategory.text = "\(cartProduct.cartProductCategory.categoryName)"
         cell.indexPath = indexPath
         cell.delegate = self
+        
+     
         
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5

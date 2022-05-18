@@ -170,6 +170,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             let url = URL(string: "\(product.productImgUrl)")
             cell.productImageView.kf.setImage(with: url)
             cell.productNameLabel.text = product.productName
+            
             cell.productPriceLabel.text = "\(product.productPrice)"
             cell.productGenderLabel.text = product.productGender
             cell.indexPath = indexPath
@@ -289,17 +290,17 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         
           let cartListUserId = "TestUserID"
         let category = Category(_id:addProduct.productCategory._id, categoryName: addProduct.productCategory.categoryName)
-        let cartList = CartProductList(cartProductId: addProduct._id, cartproductName: addProduct.productName, cartproductPrice: addProduct.productPrice, cartproductCategory: category, cartproductImgUrl: addProduct.productImgUrl, cartproductPiece: addProduct.productPiece)
+        let cartList = CartProductList(cartProductId: addProduct._id, cartProductName: addProduct.productName, cartProductPrice: addProduct.productPrice, cartProductCategory: category, cartProductImgUrl: addProduct.productImgUrl, cartProductPiece: addProduct.productPiece)
            
           
            
-           /*WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
+           WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
                if result == nil {
                    print("Error")
                }else{
                    print("Add Success")
                }
-           }*/
+           }
     }
     
    
