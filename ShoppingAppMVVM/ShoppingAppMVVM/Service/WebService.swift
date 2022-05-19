@@ -75,20 +75,16 @@ class WebService {
             "cartListUserId":cartListUserId,
             "cartList":[
                 ["cartProductId":cartList.cartProductId,
-                 "cartproductName":cartList.cartProductName,
-                 "cartproductPrice":cartList.cartProductPrice,
-                 "cartproductCategory":["_id":cartList.cartProductCategory._id,"categoryName":cartList.cartProductCategory.categoryName],
-                 "cartproductImgUrl":cartList.cartProductImgUrl,
-                 "cartproductPiece":cartList.cartProductPiece
+                 "cartProductName":cartList.cartProductName,
+                 "cartProductPrice":cartList.cartProductPrice,
+                 "cartProductCategory":["_id":cartList.cartProductCategory._id,"categoryName":cartList.cartProductCategory.categoryName],
+                 "cartProductImgUrl":cartList.cartProductImgUrl,
+                 "cartProductPiece":cartList.cartProductPiece
                 
                 ]
                
             ]
         ]
-       
-        
-     
-       
        
         Alamofire.request(addProductCartUrl,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
             if let data  = response.data{
@@ -106,9 +102,52 @@ class WebService {
         }
     }
     
+    /// It click work when clicking the increment and decrement button
+    func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
+        let url = "http://localhost:3000/productPieceIncDec"
+        let parameters = ["userId":userId,"cartProductId":cartProductId,"type":type]
+        Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
+            if let data = response.data {
+                do{
+                    if let json = try JSONSerialization.jsonObject(with: data,options: []) as? [String:Any]{
+                        print(json)
+                        comletion("Success")
+                    
+                    }
+                }catch {
+                    print(error.localizedDescription)
+                    comletion(nil)
+                }
+            }
+        }
+    
+   }
+    
+    func  deleteProduct(userId:String,cartProductId:String,comletion:@escaping(String?)->()){
+        let url = "http://localhost:3000/deleteProduct"
+        let parameters = ["userId":userId,"cartProductId":cartProductId]
+        Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
+            if let data = response.data {
+                do{
+                    if let json = try JSONSerialization.jsonObject(with: data,options: []) as? [String:Any]{
+                        print(json)
+                        comletion("Success")
+                    
+                    }
+                }catch {
+                    print(error.localizedDescription)
+                    comletion(nil)
+                }
+            }
+        }
+    
+        
+        
+    }
+   
+    
     
     // get cart list
-    
     func dowloadCartList(comletion:@escaping([CartList]?)->()){
         let dowloadCartListUrl = "http://localhost:3000/getCartList"
         Alamofire.request(dowloadCartListUrl,method: .get).responseJSON { response in
@@ -127,6 +166,13 @@ class WebService {
             }
         }
     }
+    
+    
+    
+   
+    
+   
+    
     
     
   

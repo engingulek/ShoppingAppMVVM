@@ -11,17 +11,20 @@ import UIKit
 
 
 class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDelegete{
-    func deleteProductFromShopCart(indexPath: IndexPath) {
-        print("Tıklandı")
-        
-    }
+    
+    
     
    
     @IBOutlet weak var shoppingCartCollectionView: UICollectionView!
     @IBOutlet weak var totalPriceUIView:UIView!
 
+    @IBOutlet weak var amountLabel: UILabel!
     
- 
+    @IBOutlet weak var amountResultLabel: UILabel!
+    
+   
+    @IBOutlet weak var emptyShopCartLabel: UILabel!
+    @IBOutlet weak var toOrderButton: UIButton!
     
     /// implement CartListListViewModel
     /// Kullanıcının oluşturuduğu sepetin alınması için
@@ -38,12 +41,36 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
         shoppingCartCollectionView.delegate = self
         
         shoppingCartCollectionView.dataSource = self
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: 0.0, y: 0.0, width: self.totalPriceUIView.frame.size.width, height: 2.0)
+        
+           topBorder.backgroundColor = UIColor.red.cgColor
+        
+  
+        
+        self.totalPriceUIView.layer.addSublayer(topBorder)
+        self.emptyShopCartLabel.isHidden = true
+        
+        
+        
+        
+        
+        
+        
       
         
         
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getData()
+    }
+    
+    @IBAction func toOrderButtonAction(_ sender: Any) {
+    }
     
     func getData() {
         WebService().dowloadCartList { cartList in
@@ -73,7 +100,21 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
                 DispatchQueue.main.async {
                     self.cartProductListViewModel.cartProductList =
                     self.cartListResultViewModel.cartListResult[0].cartProductList
+                    self.amountResultLabel.text = "\(self.cartProductListViewModel.calculateAmount()) ₺"
                    
+                    if self.cartProductListViewModel.cartProductListCount() == 0 {
+                        self.shoppingCartCollectionView.isHidden = true
+                        self.amountLabel.isHidden = true
+                        self.amountResultLabel.isHidden = true
+                        self.totalPriceUIView.isHidden = true
+                        self.emptyShopCartLabel.isHidden = false
+                    }else{
+                        self.shoppingCartCollectionView.isHidden = false
+                        self.amountLabel.isHidden = false
+                        self.amountResultLabel.isHidden = false
+                        self.totalPriceUIView.isHidden = false
+                        self.emptyShopCartLabel.isHidden = true
+                    }
                     
                     self.shoppingCartCollectionView.reloadData()
                  
@@ -123,6 +164,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
         
         let cartProduct = self.cartProductListViewModel.cellRowAt(index: indexPath.row)
         print("Cell Item :\(cartProduct.cartProductName)")
+        
        
         
        
@@ -142,6 +184,46 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.layer.cornerRadius = 10.0
         return cell
     }
+    
+    
+    
+    func incAndDecPieceAction(indexPath: IndexPath, type: String) {
+        let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+        let defaultUserId = "TestUserID"
+        print("Product Id : \(cartProductId)")
+        WebService().incrementAndDecrementAction(type: type, userId: defaultUserId, cartProductId: cartProductId) { result in
+            if result != nil{
+                print("Success")
+                self.getData()
+            }else{
+                print("Error")
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    func deleteProductFromShopCart(indexPath: IndexPath) {
+        let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+        let defaultUserId = "TestUserID"
+        
+        WebService().deleteProduct(userId: defaultUserId, cartProductId: cartProductId) { result in
+            if result != nil{
+                print("Success")
+                self.getData()
+            }else{
+                print("Error")
+            }
+        }
+     
+        print("Product Id : \(cartProductId)")
+        
+    }
+    
+    
+    
     
     
 }

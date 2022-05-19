@@ -9,6 +9,7 @@ import UIKit
 
 protocol ShopCartCollectionViewCellDelegete {
     func deleteProductFromShopCart(indexPath:IndexPath)
+    func incAndDecPieceAction(indexPath:IndexPath,type:String)
 }
 
 class ShopCartCollectionViewCell: UICollectionViewCell {
@@ -27,6 +28,15 @@ class ShopCartCollectionViewCell: UICollectionViewCell {
     
     @IBAction func deleteProductToCartAction(_ sender: Any) {
         delegate?.deleteProductFromShopCart(indexPath: indexPath!)
+    }
+    
+    
+    @IBAction func decButton(_ sender: Any) {
+        delegate?.incAndDecPieceAction(indexPath: indexPath!, type: "dec")
+    }
+    
+    @IBAction func incButton(_ sender: Any) {
+        delegate?.incAndDecPieceAction(indexPath: indexPath!, type: "inc")
     }
     
 }
