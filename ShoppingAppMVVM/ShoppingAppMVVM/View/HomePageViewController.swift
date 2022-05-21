@@ -179,9 +179,11 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
            
             
             
+            
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
+            
             
             
           
@@ -197,6 +199,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
+           
             return cell
             
         }else{
@@ -222,14 +225,16 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         let widthPCV = self.productCollectionView.frame.size.width
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        let cellWidthPVC = (widthPCV-30)/2
         
-        design.itemSize = CGSize(width: cellWidthPVC, height: cellWidthPVC*1.7)
+        let cellWidthPVC = (UIScreen.main.bounds.width-30)/2
         
-        design.minimumInteritemSpacing = 10
-        design.minimumLineSpacing = 10
         
-        productCollectionView.collectionViewLayout = design
+        design.itemSize = CGSize(width: cellWidthPVC, height: 320)
+        
+       
+        
+        
+       productCollectionView.collectionViewLayout = design
         
         
         let designFCV :UICollectionViewFlowLayout = UICollectionViewFlowLayout()

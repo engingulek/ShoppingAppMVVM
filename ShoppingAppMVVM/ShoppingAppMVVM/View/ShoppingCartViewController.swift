@@ -55,7 +55,7 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
         
         
         
-        
+        uıSetup()
         
         
       
@@ -132,21 +132,28 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     
     func uıSetup(){
         
-        totalPriceUIView.layer.borderWidth = 1
-        totalPriceUIView.layer.cornerRadius = 10
-        totalPriceUIView.layer.borderColor = UIColor.red.cgColor
+       
+        
+       
+        
+       
+        
         
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
-        let widthPCV = self.shoppingCartCollectionView.frame.size.width
+        
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        let cellWidthPVC = (widthPCV-30)/2
         
-        design.itemSize = CGSize(width: cellWidthPVC, height: cellWidthPVC*1.7)
+        let cellWidthPVC = (UIScreen.main.bounds.width-30)/2
         
-        design.minimumInteritemSpacing = 10
-        design.minimumLineSpacing = 10
+        
+        
+        design.itemSize = CGSize(width: cellWidthPVC, height: 380)
+        
+        
+       
+        
         
         shoppingCartCollectionView.collectionViewLayout = design
         
