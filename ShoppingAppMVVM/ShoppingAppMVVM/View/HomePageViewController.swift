@@ -279,18 +279,9 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func addProduct(indexPath: IndexPath) {
-        /*
-         MARK : Adet Sayısı Artmama Sorunu
-         Ürün eklendiği zaman tekrak eklenmektedir. Yani adet sayısı artmamaktadır. Bunu gerçekleştiren kod server tarafında yer almadığı için
-         bu işlemi gerçekleştirecek kod burada yazılacaktır.
-         */
+       
         
-        /// 1. işlem ilk önce
-        /// Tüm sepetin alınması gerekmektedir.
-   
-        
-        
-        
+  
         let addProduct = self.productListViewModel.cellForItemAt(indexPath.row)
         
           let cartListUserId = "TestUserID"
