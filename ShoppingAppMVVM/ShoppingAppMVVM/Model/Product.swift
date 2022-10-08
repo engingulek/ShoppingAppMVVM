@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product : Decodable {
+struct Product : Codable {
     var _id:String
    var productName : String
    var   productPrice : Int

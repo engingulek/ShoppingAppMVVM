@@ -43,7 +43,8 @@ class CategoriesViewController: UIViewController {
     }
     
    private func getData(){
-        WebService().dowloadCategory {  list  in
+       
+       WebService.webService.dowloadCategory {  list  in
             if let categoryList = list {
                 print(categoryList)
                

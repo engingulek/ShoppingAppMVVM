@@ -23,7 +23,7 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getData()
+        getData()
         
         
         productCollectionView.dataSource = self
@@ -62,6 +62,18 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     }
     
    
+    private func getData() {
+        WebService.webService.dowloadProducts { products in
+            if let products = products {
+                self.productListViewModel.productList = products.map(ProductViewModel.init)
+                DispatchQueue.main.async {
+                    self.productCollectionView.reloadData()
+                }
+            }
+            
+        }
+    }
+    
     /// fetchCategory
     /*private func getData() {
         WebService().dowloadProducts { products in

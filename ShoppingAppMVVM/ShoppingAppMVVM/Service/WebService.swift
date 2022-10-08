@@ -10,28 +10,7 @@ import Alamofire
 import UIKit
 class WebService {
     
-    
-   /* func dowloadProducts(comletion:@escaping([Product]?)->()){
-        let productUrl = "http://localhost:3000/products"
-        
-        Alamofire.request(productUrl,method: .get).responseJSON { response in
-            if let data = response.data {
-                do {
-                    let result = try JSONDecoder().decode(Productresult.self, from: data)
-                    
-                    if let productList = result.productList {
-                        comletion(productList)
-                    }
-                }catch{
-                    comletion(nil)
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }*/
-    
-    
-    
+    static var webService = WebService()
     
     // MARK : Alamofire Requests
     /// Dowload Categories
@@ -43,118 +22,33 @@ class WebService {
             }else {
             completion(nil)
             }
-            
         }
         
-       /* APICaller.sharred.fetchData(router: "categories") { (result :Result<DataResult<Category>>) in
-            switch result {
-            case .success(let value):
-      
-              
-                
-                completion(value.list)
-            case .failure(let error):
-                
-                completion(nil)
-                print(error.localizedDescription)
-            }
-        }*/
-        
-   
-        
-        
         }
-    
-    
-    
-    
-    
-    
-    
-    func test(){
-      
-        
-        
-        /*APICaller.sharred.fetchData(router: "") { (result:[Category]?) in
-            
-        }*/
-        //APICaller.sharred.fetchData(router: "") { (result:[Category?]) in
-            
-        }
-        
-        /*APICaller.sharred.fetchData(router: "") { (result:[Category]) in
-            
-        }*/
-        
-        
-        
-    
-        
-       /* APICaller.sharred.fetchData(router: "") { a in
-            
-        }*/
-      
-        
-        
-        
-        
-        
-       /* APICaller.sharred.fetchData(router: "") { result in
-            
-        }*/
-        
-        /*let categoryUrl = "http://localhost:3000/categories"
-        
-         Alamofire.request(categoryUrl,method: .get).responseJSON {
-            response in
-            
-            if let data  = response.data {
-                
-                do {
-                    
-                    let result = try JSONDecoder().decode(Categoryresult.self, from: data)
-                    
-                    if var categoryList = result.categoryList {
-                        let allCategory = Category(_id: "0", categoryName: "Hepsi")
-                        categoryList.insert(allCategory, at: 0)
-                        completion(categoryList)
-                    }
-                }catch{
-                    completion(nil)
-                    print(error.localizedDescription)
-                }
-                
-            }
-            
-        }*/
-}
-    
-    
     /// Dowload Products
-    
-    func dowloadProducts(comletion:@escaping([Product]?)->()){
-        let productUrl = "http://localhost:3000/products"
+    func dowloadProducts(completion:@escaping([Product]?)->()){
         
-        Alamofire.request(productUrl,method: .get).responseJSON { response in
-            if let data = response.data {
-                do {
-                    let result = try JSONDecoder().decode(Productresult.self, from: data)
-                    
-                    if let productList = result.productList {
-                        comletion(productList)
-                    }
-                }catch{
-                    comletion(nil)
-                    print(error.localizedDescription)
-                }
+        APICaller.sharred.fetchData(router: "products") { (result:[Product]?) in
+        
+            if let result = result {
+                completion(result)
+            }else {
+            completion(nil)
+                
             }
         }
-    }
+        
+        }
+
+    
+    
+        }
+
     
     
     // post cartList-> Add Product to Cart
     
-    func addProducToCart(cartListUserId
+   /* func addProducToCart(cartListUserId
                          :String,cartList:CartProductList,completion:@escaping(String?)->()){
         let addProductCartUrl = "http://localhost:3000/postCartList"
        
@@ -190,10 +84,10 @@ class WebService {
             }
             
         }
-    }
+    }*/
     
     /// It click work when clicking the increment and decrement button
-    func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
+   /* func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
         let url = "http://localhost:3000/productPieceIncDec"
         let parameters = ["userId":userId,"cartProductId":cartProductId,"type":type]
         Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
@@ -211,9 +105,9 @@ class WebService {
             }
         }
     
-   }
+   }*/
     
-    func  deleteProduct(userId:String,cartProductId:String,comletion:@escaping(String?)->()){
+    /*func  deleteProduct(userId:String,cartProductId:String,comletion:@escaping(String?)->()){
         let url = "http://localhost:3000/deleteProduct"
         let parameters = ["userId":userId,"cartProductId":cartProductId]
         Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
@@ -233,12 +127,12 @@ class WebService {
     
         
         
-    }
+    }*/
    
     
     
     // get cart list
-    func dowloadCartList(comletion:@escaping([CartList]?)->()){
+    /*func dowloadCartList(comletion:@escaping([CartList]?)->()){
         let dowloadCartListUrl = "http://localhost:3000/getCartList"
         Alamofire.request(dowloadCartListUrl,method: .get).responseJSON { response in
             if let data = response.data {
@@ -255,7 +149,7 @@ class WebService {
                 }
             }
         }
-    }
+    }*/
     
     
     

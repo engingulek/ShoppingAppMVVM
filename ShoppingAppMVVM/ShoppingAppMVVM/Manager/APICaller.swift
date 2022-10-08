@@ -15,30 +15,8 @@ struct Constant {
 
 class APICaller {
    static var sharred = APICaller()
-    
-    
-  /*  func dowloadProducts(comletion:@escaping([Product]?)->()){
-        let productUrl = "http://localhost:3000/products"
-        
-        Alamofire.request(productUrl,method: .get).responseJSON { response in
-            if let data = response.data {
-                do {
-                    let result = try JSONDecoder().decode(Productresult.self, from: data)
-                    
-                    if let productList = result.productList {
-                        comletion(productList)
-                    }
-                }catch{
-                    comletion(nil)
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }*/
-    
-    
    func fetchData<T:Codable>(router:String,completion:@escaping([T]?)-> Void) {
-       let url = "\(Constant.baseURL)categories"
+       let url = "\(Constant.baseURL)\(router)"
        Alamofire.request(url,method: .get).responseJSON { response in
            if let data  = response.data {
                do {
@@ -57,75 +35,4 @@ class APICaller {
        }
         
     }
-
-    
-    
-
-    
-    
-    
-    
-    
-    /*func fetchData<T:Codable>(router:String,completion: (Result<[T]?>)-> Void ){
-        let url = "http://localhost:3000/\(Constant.baseURL)"
-        Alamofire.request(url,method: .get).responseJSON {
-           response in
-           
-           if let data  = response.data {
-               
-               do {
-                   
-                   //let result = try JSONDecoder.decode(Result.)
-                   
-                   /*let result = try JSONDecoder().decode(Result<T>.self, from: data)
-                   if let list = result.list {
-                       completion(list)
-                   }*/
-                   
-                  /* if var categoryList = result.categoryList {
-                       let allCategory = Category(_id: "0", categoryName: "Hepsi")
-                       categoryList.insert(allCategory, at: 0)
-                       completion(categoryList)
-                   }*/
-               }catch{
-                   completion(nil)
-                   print(error.localizedDescription)
-               }
-               
-           }
-           
-       }
-        
-    }*/
-   // func fetchData<T>(router:String,data:(T?)->()) where T: Decodable{}
-    
-   /* func fetchData<T:Codable>(router:String,completion:@escaping ([T]?)->() ){
-        let url = "http://localhost:3000/\(Constant.baseURL)"
-        Alamofire.request(url,method: .get).responseJSON {
-           response in
-           
-           if let data  = response.data {
-               
-               do {
-                   
-                   let result = try JSONDecoder().decode(Result<T>.self, from: data)
-                   if let list = result.list {
-                       completion(list)
-                   }
-                   
-                  /* if var categoryList = result.categoryList {
-                       let allCategory = Category(_id: "0", categoryName: "Hepsi")
-                       categoryList.insert(allCategory, at: 0)
-                       completion(categoryList)
-                   }*/
-               }catch{
-                   completion(nil)
-                   print(error.localizedDescription)
-               }
-               
-           }
-           
-       }
-        
-    }*/
 }
