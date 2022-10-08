@@ -18,23 +18,12 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     private var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
     private var selectedSortType : Bool? =  nil
-   
-    
-    
-    
- 
-   
     /// implement ProductListViewModel
     var productListViewModel = ProductListViewModel()
     
-
-   
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        //getData()
         
         
         productCollectionView.dataSource = self
@@ -54,12 +43,12 @@ class HomePageViewController: UIViewController,CategoryDelegate {
         let sortTypeActionSheet = UIAlertController(title: "Sort Type", message: "Please Select an Sort Type", preferredStyle: .actionSheet)
         sortTypeActionSheet.addAction(UIAlertAction(title: "Price Growing", style: .default, handler: { (_) in
             self.selectedSortType = true
-            self.getData()
+            //self.getData()
                }))
 
         sortTypeActionSheet.addAction(UIAlertAction(title: "Price Decreasing", style: .default, handler: { (_) in
             self.selectedSortType = false
-            self.getData()
+          //  self.getData()
                }))
 
     
@@ -74,7 +63,7 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     
    
     /// fetchCategory
-    private func getData() {
+    /*private func getData() {
         WebService().dowloadProducts { products in
             
             if let products = products {
@@ -122,11 +111,11 @@ class HomePageViewController: UIViewController,CategoryDelegate {
             }
         }
         
-    }
+    }*/
   
     func selectedCategory(category: CategoryViewModel) {
         self.selectedCategory = category
-        getData()
+       // getData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,6 +135,10 @@ class HomePageViewController: UIViewController,CategoryDelegate {
 ///Category CollectionView
 ///  FilterList CollectionView
 extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource,ProductCollectinViewCellDelegate{
+    func addProduct(indexPath: IndexPath) {
+        
+    }
+    
   
     
   
@@ -262,7 +255,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         if collectionView == self.filterCollectionView {
             
             self.selectedFilterName = self.filterNameList[indexPath.row]
-            getData()
+          //  getData()
             
         }else if (collectionView == self.productCollectionView) {
             
@@ -278,7 +271,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }
     }
     
-    func addProduct(indexPath: IndexPath) {
+   /* func addProduct(indexPath: IndexPath) {
        
         
   
@@ -297,7 +290,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
                    print("Add Success")
                }
            }
-    }
+    }*/
     
    
 }

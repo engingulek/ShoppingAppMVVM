@@ -38,10 +38,10 @@ struct CategoryViewModel {
     let category : Category
     
     var categoryName : String {
-        return self.category.categoryName
+        return self.category.categoryName!
     }
     
     var categoryId : String {
-        return self.category._id
+        return self.category._id!
     }
 }

@@ -43,10 +43,11 @@ class CategoriesViewController: UIViewController {
     }
     
    private func getData(){
-        WebService().dowloadCategory {  categoryList  in
-            if let categoryList = categoryList {
+        WebService().dowloadCategory {  list  in
+            if let categoryList = list {
+                print(categoryList)
                
-                self.categoryLitViewModel.categoryList = categoryList.map(CategoryViewModel.init)
+               self.categoryLitViewModel.categoryList = categoryList.map(CategoryViewModel.init)
               
                 Dispatch.DispatchQueue.main.async {
                     self.categoriesTableView.reloadData()

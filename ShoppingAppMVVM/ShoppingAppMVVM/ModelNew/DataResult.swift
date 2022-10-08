@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class DataResult<T:Codable>: Codable {
+    var list:[T]?
+    var success:Int?
+}

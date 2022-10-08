@@ -7,13 +7,103 @@
 
 import Foundation
 import Alamofire
+import UIKit
 class WebService {
     
-    // MARK : Alamofire Requests
     
+   /* func dowloadProducts(comletion:@escaping([Product]?)->()){
+        let productUrl = "http://localhost:3000/products"
+        
+        Alamofire.request(productUrl,method: .get).responseJSON { response in
+            if let data = response.data {
+                do {
+                    let result = try JSONDecoder().decode(Productresult.self, from: data)
+                    
+                    if let productList = result.productList {
+                        comletion(productList)
+                    }
+                }catch{
+                    comletion(nil)
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }*/
+    
+    
+    
+    
+    // MARK : Alamofire Requests
     /// Dowload Categories
     func dowloadCategory(completion:@escaping ([Category]?)->() ){
-        let categoryUrl = "http://localhost:3000/categories"
+        APICaller.sharred.fetchData(router: "categories") { (result:[Category]?) in
+        
+            if let result = result {
+                completion(result)
+            }else {
+            completion(nil)
+            }
+            
+        }
+        
+       /* APICaller.sharred.fetchData(router: "categories") { (result :Result<DataResult<Category>>) in
+            switch result {
+            case .success(let value):
+      
+              
+                
+                completion(value.list)
+            case .failure(let error):
+                
+                completion(nil)
+                print(error.localizedDescription)
+            }
+        }*/
+        
+   
+        
+        
+        }
+    
+    
+    
+    
+    
+    
+    
+    func test(){
+      
+        
+        
+        /*APICaller.sharred.fetchData(router: "") { (result:[Category]?) in
+            
+        }*/
+        //APICaller.sharred.fetchData(router: "") { (result:[Category?]) in
+            
+        }
+        
+        /*APICaller.sharred.fetchData(router: "") { (result:[Category]) in
+            
+        }*/
+        
+        
+        
+    
+        
+       /* APICaller.sharred.fetchData(router: "") { a in
+            
+        }*/
+      
+        
+        
+        
+        
+        
+       /* APICaller.sharred.fetchData(router: "") { result in
+            
+        }*/
+        
+        /*let categoryUrl = "http://localhost:3000/categories"
         
          Alamofire.request(categoryUrl,method: .get).responseJSON {
             response in
@@ -36,7 +126,7 @@ class WebService {
                 
             }
             
-        }
+        }*/
 }
     
     
@@ -178,5 +268,5 @@ class WebService {
   
     
     
-}
+
 

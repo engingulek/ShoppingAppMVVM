@@ -35,7 +35,7 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     /// Kullancının oluştruduğu sepetin içindeki ürünlerin alınması içi
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+//        getData()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         shoppingCartCollectionView.delegate = self
@@ -66,13 +66,13 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getData()
+       // getData()
     }
     
     @IBAction func toOrderButtonAction(_ sender: Any) {
     }
     
-    func getData() {
+    /*func getData() {
         WebService().dowloadCartList { cartList in
             if let cartList = cartList {
                 
@@ -127,7 +127,7 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
             }
         }
         
-    }
+    }*/
     
     
     func uıSetup(){
@@ -195,7 +195,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func incAndDecPieceAction(indexPath: IndexPath, type: String) {
-        let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+       /* let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
         let defaultUserId = "TestUserID"
         print("Product Id : \(cartProductId)")
         WebService().incrementAndDecrementAction(type: type, userId: defaultUserId, cartProductId: cartProductId) { result in
@@ -205,7 +205,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
             }else{
                 print("Error")
             }
-        }
+        }*/
         
         
     }
@@ -213,7 +213,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func deleteProductFromShopCart(indexPath: IndexPath) {
-        let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+       /* let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
         let defaultUserId = "TestUserID"
         
         WebService().deleteProduct(userId: defaultUserId, cartProductId: cartProductId) { result in
@@ -225,7 +225,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
             }
         }
      
-        print("Product Id : \(cartProductId)")
+        print("Product Id : \(cartProductId)")*/
         
     }
     
