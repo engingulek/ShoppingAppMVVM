@@ -43,12 +43,12 @@ class HomePageViewController: UIViewController,CategoryDelegate {
         let sortTypeActionSheet = UIAlertController(title: "Sort Type", message: "Please Select an Sort Type", preferredStyle: .actionSheet)
         sortTypeActionSheet.addAction(UIAlertAction(title: "Price Growing", style: .default, handler: { (_) in
             self.selectedSortType = true
-            //self.getData()
+            self.getData()
                }))
 
         sortTypeActionSheet.addAction(UIAlertAction(title: "Price Decreasing", style: .default, handler: { (_) in
             self.selectedSortType = false
-          //  self.getData()
+            self.getData()
                }))
 
     
@@ -56,78 +56,29 @@ class HomePageViewController: UIViewController,CategoryDelegate {
             self.selectedSortType = nil
                }))
         
-        self.present(sortTypeActionSheet, animated: true, completion: {
-            print("completion block")
-        })
+        self.present(sortTypeActionSheet, animated: true)
     }
     
    
     private func getData() {
         WebService.webService.dowloadProducts { products in
             if let products = products {
-                self.productListViewModel.productList = products.map(ProductViewModel.init)
-                DispatchQueue.main.async {
-                    self.productCollectionView.reloadData()
-                }
-            }
-            
-        }
-    }
-    
-    /// fetchCategory
-    /*private func getData() {
-        WebService().dowloadProducts { products in
-            
-            if let products = products {
-               
-                
-                if (self.selectedCategory != nil && self.selectedCategory?.categoryName != "Hepsi") {
-                    let productList = products.filter{
-                        $0.productCategory._id == self.selectedCategory?.categoryId
-                    }
-                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
-                }else if(self.selectedFilterName != nil && self.selectedFilterName != "All"){
-                    let productList = products.filter{
-                        $0.productGender == self.selectedFilterName
-                    }
-                    
-                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
-                }else if (self.selectedSortType == true) {
-                    let productList = products.sorted (by: {$0.productPrice < $1.productPrice})
-                    
-                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
-                }
-                
-                else if (self.selectedSortType == false) {
-                    let productList = products.sorted (by: {$0.productPrice > $1.productPrice})
-                    
-                    self.productListViewModel.productList = productList.map(ProductViewModel.init)
-                }
-                
-                else{
-                    self.productListViewModel.productList = products.map(ProductViewModel.init)
-                    
-                }
-                
+               let productList = self.productListViewModel.filterProducts(products: products, selectedSortType: self.selectedSortType, selectedFilterName: self.selectedFilterName, selectedCategory: self.selectedCategory)
+                self.productListViewModel.productList = productList.map(ProductViewModel.init)
                 DispatchQueue.main.async {
                     self.productCollectionView.reloadData()
                     self.selectedSortType = nil
                     self.selectedFilterName = nil
                     self.selectedCategory = nil
                 }
-                
-             
-                
-               
-                
             }
+            
         }
-        
-    }*/
-  
+    }
+
     func selectedCategory(category: CategoryViewModel) {
         self.selectedCategory = category
-       // getData()
+        getData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -150,10 +101,6 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     func addProduct(indexPath: IndexPath) {
         
     }
-    
-  
-    
-  
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.productCollectionView {
@@ -226,8 +173,6 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     private func setupUI(){
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
-        let widthPCV = self.productCollectionView.frame.size.width
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         
@@ -265,19 +210,10 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.filterCollectionView {
-            
             self.selectedFilterName = self.filterNameList[indexPath.row]
-          //  getData()
-            
+            getData()
         }else if (collectionView == self.productCollectionView) {
-            
-            
-        
-            
         }
-        
-        
-        
         else{
             fatalError("Don't select collection view")
         }

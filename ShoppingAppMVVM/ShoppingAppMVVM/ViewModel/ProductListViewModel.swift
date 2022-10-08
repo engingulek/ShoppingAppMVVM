@@ -23,6 +23,62 @@ struct ProductListViewModel {
     func cellForItemAt(_ index:Int) -> ProductViewModel {
         return productList[index]
     }
+    
+    
+    func filterProducts(products:[Product],selectedSortType:Bool?,selectedFilterName:String?,selectedCategory : CategoryViewModel?) -> [Product] {
+        
+        var filterProducts = [Product]()
+        if (selectedCategory != nil && selectedCategory!.categoryName != "Hepsi") {
+                           let productList = products.filter{
+                               $0.productCategory._id == selectedCategory?.categoryId
+                           }
+            filterProducts = productList
+            
+                          
+                       }else if(selectedFilterName != nil && selectedFilterName != "All"){
+                           let productList = products.filter{
+                               $0.productGender == selectedFilterName
+                           }
+                           filterProducts = productList
+                           
+                    
+                       }else if (selectedSortType == true) {
+                           let productList = products.sorted (by: {$0.productPrice < $1.productPrice})
+                           
+                           filterProducts = productList
+                       }
+                       
+                       else if (selectedSortType == false) {
+                           let productList = products.sorted (by: {$0.productPrice > $1.productPrice})
+                           
+                           filterProducts = productList
+                       }
+                       
+                       else{
+                           
+                           filterProducts = products
+                           
+                       }
+        return filterProducts
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+    }
+    
+    
+    
+  
+    
+ 
+    
 }
 
 
