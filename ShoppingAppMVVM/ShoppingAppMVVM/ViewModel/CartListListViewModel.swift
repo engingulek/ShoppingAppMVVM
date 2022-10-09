@@ -51,9 +51,10 @@ struct CartProductListViewModel {
     
     func calculateAmount() -> Int {
         var amount = 0
-       cartProductList.map{
-            amount += $0.cartProductPrice *  $0.cartProductPiece
+        for price in cartProductList {
+            amount += price.cartProductPrice
         }
+      
         return amount
         
     }

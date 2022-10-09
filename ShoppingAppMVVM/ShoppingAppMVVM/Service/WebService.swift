@@ -54,16 +54,7 @@ class WebService {
         
         
     }
-        }
-
-
-
-
-
     
-
-
-
     
     // post cartList-> Add Product to Cart
     
@@ -118,9 +109,21 @@ func dowloadCartList(comletion:@escaping([CartList]?)->()){
     }
 }
 
+
+func deleteProduct(id:String,completion:@escaping(String?)-> Void) {
+    APICaller.sharred.deleteData(router: "deleteProduct", productId: id) { result in
+        if let result = result {
+            completion(result)
+        }else{
+            completion(nil)
+        }
+    }
+    
+}
+    
     
     /// It click work when clicking the increment and decrement button
-   /* func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
+   func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
         let url = "http://localhost:3000/productPieceIncDec"
         let parameters = ["userId":userId,"cartProductId":cartProductId,"type":type]
         Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
@@ -138,29 +141,29 @@ func dowloadCartList(comletion:@escaping([CartList]?)->()){
             }
         }
     
-   }*/
+   }
     
-    /*func  deleteProduct(userId:String,cartProductId:String,comletion:@escaping(String?)->()){
-        let url = "http://localhost:3000/deleteProduct"
-        let parameters = ["userId":userId,"cartProductId":cartProductId]
-        Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
-            if let data = response.data {
-                do{
-                    if let json = try JSONSerialization.jsonObject(with: data,options: []) as? [String:Any]{
-                        print(json)
-                        comletion("Success")
-                    
-                    }
-                }catch {
-                    print(error.localizedDescription)
-                    comletion(nil)
-                }
-            }
+
+    
+    
+    
         }
+
+
+
+
+
     
-        
-        
-    }*/
+
+
+
+    
+
+
+
+    
+
+
    
     
     

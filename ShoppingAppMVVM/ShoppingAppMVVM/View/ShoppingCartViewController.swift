@@ -35,7 +35,7 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
     /// Kullancının oluştruduğu sepetin içindeki ürünlerin alınması içi
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getData()
+        getData()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         shoppingCartCollectionView.delegate = self
@@ -46,55 +46,27 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
         topBorder.frame = CGRect(x: 0.0, y: 0.0, width: self.totalPriceUIView.frame.size.width, height: 2.0)
         
            topBorder.backgroundColor = UIColor.red.cgColor
-        
-  
-        
         self.totalPriceUIView.layer.addSublayer(topBorder)
         self.emptyShopCartLabel.isHidden = true
-        
-        
-        
-        
         uıSetup()
-        
-        
-      
-        
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       // getData()
+        getData()
     }
     
     @IBAction func toOrderButtonAction(_ sender: Any) {
     }
     
-    /*func getData() {
-        WebService().dowloadCartList { cartList in
+    
+    func getData() {
+        WebService.webService.dowloadCartList { cartList in
             if let cartList = cartList {
-                
                 let checkUserIdFilter = cartList.filter{
-                    $0.cartListUserId == "TestUserID"
+                    $0._id == Constant.userIdv
                 }
-                
-                // Zaten her kullanıcının bir tane olacağı için 0. indeks ile çağrılmıştır
-               
                 self.cartListResultViewModel.cartListResult = checkUserIdFilter.map(CartListViewModel.init)
-                
-                
-              
-                
-              
-              
-
-                
-                
-               
-                
-                
                 
                 
                 DispatchQueue.main.async {
@@ -122,21 +94,12 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
                     
                 
                 }
-                
-                
             }
         }
-        
-    }*/
+    }
     
-    
+
     func uıSetup(){
-        
-       
-        
-       
-        
-       
         
         
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -150,11 +113,6 @@ class ShoppingCartViewController : UIViewController,ShopCartCollectionViewCellDe
         
         
         design.itemSize = CGSize(width: cellWidthPVC, height: 380)
-        
-        
-       
-        
-        
         shoppingCartCollectionView.collectionViewLayout = design
         
     }
@@ -180,7 +138,7 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.shopCartProductName.text = cartProduct.cartProductName
        cell.shopCartProductPiece.text = "\(cartProduct.cartProductPiece)"
         cell.shopCartProductPrice.text = "\(cartProduct.cartProductPrice)"
-        cell.shopCartProductCategory.text = "\(cartProduct.cartProductCategory.categoryName)"
+        cell.shopCartProductCategory.text =  cartProduct.cartProductCategory.categoryName
         cell.indexPath = indexPath
         cell.delegate = self
         
@@ -195,28 +153,12 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func incAndDecPieceAction(indexPath: IndexPath, type: String) {
-       /* let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+       let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
         let defaultUserId = "TestUserID"
         print("Product Id : \(cartProductId)")
-        WebService().incrementAndDecrementAction(type: type, userId: defaultUserId, cartProductId: cartProductId) { result in
-            if result != nil{
-                print("Success")
-                self.getData()
-            }else{
-                print("Error")
-            }
-        }*/
         
         
-    }
-    
-    
-    
-    func deleteProductFromShopCart(indexPath: IndexPath) {
-       /* let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
-        let defaultUserId = "TestUserID"
-        
-        WebService().deleteProduct(userId: defaultUserId, cartProductId: cartProductId) { result in
+        WebService.webService.incrementAndDecrementAction(type: type, userId: defaultUserId, cartProductId: cartProductId) { result in
             if result != nil{
                 print("Success")
                 self.getData()
@@ -224,9 +166,23 @@ extension ShoppingCartViewController:UICollectionViewDelegate,UICollectionViewDa
                 print("Error")
             }
         }
-     
-        print("Product Id : \(cartProductId)")*/
         
+        
+    }
+    
+    
+    
+    func deleteProductFromShopCart(indexPath: IndexPath) {
+      let cartProductId = self.cartProductListViewModel.cellRowAt(index: indexPath.row).cartProductId
+        
+        WebService.webService.deleteProduct(id: cartProductId) { result in
+            if result != nil{
+                print("Success")
+                
+            }else{
+                print("Error")
+            }
+        }
     }
     
     

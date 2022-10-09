@@ -46,14 +46,11 @@ class APICaller {
                  "cartProductCategory":["_id":data.productCategory._id,"categoryName":data.productCategory.categoryName],
                  "cartProductImgUrl":data.productImgUrl,
                  "cartProductPiece":data.productPiece
-                
                 ]
-               
             ]
         ]
         
         Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
-            
             if let data = response.data {
                 do {
                     if try JSONSerialization.jsonObject(with: data,options: []) is [String:Any]{
@@ -63,14 +60,34 @@ class APICaller {
                 }catch{
                     print(error.localizedDescription)
                     completion(nil)
+                }
+            }
+        }
+    }
+    
+    func deleteData(router:String,productId:String,completion:@escaping(String?)-> Void ){
+        let url = "\(Constant.baseURL)\(router)"
+        let parameters = ["userId":Constant.userIdv,"cartProductId":productId]
+        Alamofire.request(url,method: .post,parameters: parameters,encoding: JSONEncoding.init()).responseJSON { response in
+            if let data = response.data {
+                do{
+                    if try JSONSerialization.jsonObject(with: data,options: []) is [String:Any]{
+                        completion("Success")
+                    }
+                }catch{
+                    completion(nil)
                     
                 }
             }
-            
         }
         
         
     }
+    
+    
+    
+    
+    
     
     
     
