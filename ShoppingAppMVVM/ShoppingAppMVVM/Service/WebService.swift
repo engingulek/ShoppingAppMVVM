@@ -39,16 +39,38 @@ class WebService {
         }
         
         }
+    
+    func addProductCart(data:ProductViewModel, completion:@escaping(String?)-> ()){
+        APICaller.sharred.sendData(router : "postCartList" ,data: data) { result in
+            if result == nil {
+                completion(nil)
+            }else{
+                completion("Success")
+            }
+        
+            
+        }
+         
+        
+        
+    }
 
     
     
         }
 
+
+
+
+
     
+
+
+
     
     // post cartList-> Add Product to Cart
     
-   /* func addProducToCart(cartListUserId
+    func addProducToCart(cartListUserId
                          :String,cartList:CartProductList,completion:@escaping(String?)->()){
         let addProductCartUrl = "http://localhost:3000/postCartList"
        
@@ -84,7 +106,7 @@ class WebService {
             }
             
         }
-    }*/
+    }
     
     /// It click work when clicking the increment and decrement button
    /* func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){

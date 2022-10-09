@@ -61,17 +61,23 @@ struct ProductListViewModel {
                        }
         return filterProducts
         
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
     }
+    
+    
+    
+    func addProductToCartList(indexPath:Int,completion:@escaping(String?)->Void) {
+        let product = cellForItemAt(indexPath)
+         WebService.webService.addProductCart(data: product) { result in
+             if result == nil {
+                 completion(nil)
+             }else{
+                 completion("Success")
+             }
+             
+         }
+    }
+    
+  
     
     
     

@@ -33,10 +33,6 @@ class HomePageViewController: UIViewController,CategoryDelegate {
         filterCollectionView.delegate = self
         setupUI()
         
-        
-       
-        
-        
     }
     
     @IBAction func sortTypeVisibility(_ sender: Any) {
@@ -98,9 +94,6 @@ class HomePageViewController: UIViewController,CategoryDelegate {
 ///Category CollectionView
 ///  FilterList CollectionView
 extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource,ProductCollectinViewCellDelegate{
-    func addProduct(indexPath: IndexPath) {
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.productCollectionView {
@@ -109,9 +102,6 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }else{
             return filterNameList.count
         }
-        
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -127,22 +117,9 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             cell.productGenderLabel.text = product.productGender
             cell.indexPath = indexPath
             cell.delegate = self
-            
-           
-            
-            
-            
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
             cell.layer.cornerRadius = 10.0
-            
-            
-            
-          
-            
-            
-           
-            
             return cell
         }else if(collectionView == self.filterCollectionView){
             let cell = self.filterCollectionView.dequeueReusableCell(withReuseIdentifier: "filterNameCell", for: indexPath) as! FilterCollectionViewCell
@@ -174,40 +151,23 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     private func setupUI(){
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
-        
         let cellWidthPVC = (UIScreen.main.bounds.width-30)/2
-        
-        
         design.itemSize = CGSize(width: cellWidthPVC, height: 320)
-        
-       
-        
-        
        productCollectionView.collectionViewLayout = design
-        
-        
         let designFCV :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
         let widthFCV = self.filterCollectionView.frame.size.width
         let cellWidthFCV = (widthFCV-30)/3.5
         designFCV.itemSize = CGSize(width: cellWidthFCV, height: self.filterCollectionView.frame.size.height/2)
         designFCV.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10)
-        
-      
-        
         designFCV.minimumInteritemSpacing = 20
         designFCV.minimumLineSpacing = 10
         designFCV.scrollDirection = .horizontal
- 
-        
        filterCollectionView.collectionViewLayout = designFCV
-        
     }
     
     
-    //collectionView cell didSelect
     
+    //collectionView cell didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.filterCollectionView {
             self.selectedFilterName = self.filterNameList[indexPath.row]
@@ -219,26 +179,17 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }
     }
     
-   /* func addProduct(indexPath: IndexPath) {
-       
+    
+    func addProduct(indexPath: IndexPath) {
+        self.productListViewModel.addProductToCartList(indexPath: indexPath.row) { result in
+            if result == nil {
+                print("Error")
+            }else{
+                print("Add Success")
+            }
+        }
         
-  
-        let addProduct = self.productListViewModel.cellForItemAt(indexPath.row)
-        
-          let cartListUserId = "TestUserID"
-        let category = Category(_id:addProduct.productCategory._id, categoryName: addProduct.productCategory.categoryName)
-        let cartList = CartProductList(cartProductId: addProduct._id, cartProductName: addProduct.productName, cartProductPrice: addProduct.productPrice, cartProductCategory: category, cartProductImgUrl: addProduct.productImgUrl, cartProductPiece: addProduct.productPiece)
-           
-          
-           
-           WebService().addProducToCart(cartListUserId: cartListUserId, cartList: cartList) { result in
-               if result == nil {
-                   print("Error")
-               }else{
-                   print("Add Success")
-               }
-           }
-    }*/
+    }
     
    
 }
