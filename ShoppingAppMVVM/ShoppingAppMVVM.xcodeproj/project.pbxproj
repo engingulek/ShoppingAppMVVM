@@ -17,9 +17,7 @@
 		7D1A6BF528269F3300D377EE /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BF428269F3300D377EE /* CategoriesViewController.swift */; };
 		7D1A6BF82826A49D00D377EE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BF72826A49D00D377EE /* Category.swift */; };
 		7D1A6BFB2826A59A00D377EE /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BFA2826A59A00D377EE /* WebService.swift */; };
-		7D1A6BFF2826A96D00D377EE /* Categoryresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1A6BFE2826A96D00D377EE /* Categoryresult.swift */; };
 		7D4F170C28270392008A474C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F170B28270392008A474C /* Product.swift */; };
-		7D4F170E282704CA008A474C /* Productresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F170D282704CA008A474C /* Productresult.swift */; };
 		7D78B03D2833C514000A5C4B /* CartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D78B03C2833C514000A5C4B /* CartList.swift */; };
 		7DA92B8E2833944300416412 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA92B8D2833944300416412 /* ShoppingCartViewController.swift */; };
 		7DA92B942833BCEB00416412 /* CartProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA92B932833BCEB00416412 /* CartProductList.swift */; };
@@ -62,10 +60,8 @@
 		7D1A6BF428269F3300D377EE /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		7D1A6BF72826A49D00D377EE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7D1A6BFA2826A59A00D377EE /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		7D1A6BFE2826A96D00D377EE /* Categoryresult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categoryresult.swift; sourceTree = "<group>"; };
 		7D3CE04628315CF50087458F /* ShoppingAppMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingAppMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F170B28270392008A474C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		7D4F170D282704CA008A474C /* Productresult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Productresult.swift; sourceTree = "<group>"; };
 		7D78B03C2833C514000A5C4B /* CartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartList.swift; sourceTree = "<group>"; };
 		7DA92B8D2833944300416412 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		7DA92B932833BCEB00416412 /* CartProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductList.swift; sourceTree = "<group>"; };
@@ -165,9 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				7D1A6BF72826A49D00D377EE /* Category.swift */,
-				7D1A6BFE2826A96D00D377EE /* Categoryresult.swift */,
 				7D4F170B28270392008A474C /* Product.swift */,
-				7D4F170D282704CA008A474C /* Productresult.swift */,
 				7DA92B932833BCEB00416412 /* CartProductList.swift */,
 				7D78B03C2833C514000A5C4B /* CartList.swift */,
 				7DF636AB28341BED00278BFC /* CartListResult.swift */,
@@ -392,10 +386,8 @@
 				7D1A6BFB2826A59A00D377EE /* WebService.swift in Sources */,
 				7DA92B962833BEED00416412 /* AddProductToCartViewModel.swift in Sources */,
 				7D1A6BE428269BBC00D377EE /* HomePageViewController.swift in Sources */,
-				7D4F170E282704CA008A474C /* Productresult.swift in Sources */,
 				7D4F170C28270392008A474C /* Product.swift in Sources */,
 				7DDBAF3328316A6C008BCE1F /* ProductCollectionViewCell.swift in Sources */,
-				7D1A6BFF2826A96D00D377EE /* Categoryresult.swift in Sources */,
 				7D1A6BF82826A49D00D377EE /* Category.swift in Sources */,
 				7DB4578F28F1A12000CF99AA /* APICaller.swift in Sources */,
 				7DF8B8F72834407B00C8F6AC /* ShopCartCollectionViewCell.swift in Sources */,

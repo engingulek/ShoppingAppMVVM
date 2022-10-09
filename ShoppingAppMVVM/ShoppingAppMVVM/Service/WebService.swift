@@ -54,9 +54,6 @@ class WebService {
         
         
     }
-
-    
-    
         }
 
 
@@ -107,6 +104,20 @@ class WebService {
             
         }
     }
+
+// get cart list
+func dowloadCartList(comletion:@escaping([CartList]?)->()){
+    APICaller.sharred.fetchData(router: "getCartList") { (result:[CartList]?) in
+        if let result = result {
+            comletion(result)
+            
+        }else{
+            comletion(nil)
+        }
+        
+    }
+}
+
     
     /// It click work when clicking the increment and decrement button
    /* func  incrementAndDecrementAction(type:String,userId:String,cartProductId:String,comletion:@escaping(String?)->()){
@@ -151,27 +162,6 @@ class WebService {
         
     }*/
    
-    
-    
-    // get cart list
-    /*func dowloadCartList(comletion:@escaping([CartList]?)->()){
-        let dowloadCartListUrl = "http://localhost:3000/getCartList"
-        Alamofire.request(dowloadCartListUrl,method: .get).responseJSON { response in
-            if let data = response.data {
-                do {
-                    let result = try JSONDecoder().decode(CartListResult.self,from: data)
-                    
-                    if let cartList = result.cartList {
-                        comletion(cartList)
-                    }
-                    
-                }catch{
-                    comletion(nil)
-                    
-                }
-            }
-        }
-    }*/
     
     
     

@@ -23,8 +23,6 @@ struct ProductListViewModel {
     func cellForItemAt(_ index:Int) -> ProductViewModel {
         return productList[index]
     }
-    
-    
     func filterProducts(products:[Product],selectedSortType:Bool?,selectedFilterName:String?,selectedCategory : CategoryViewModel?) -> [Product] {
         
         var filterProducts = [Product]()

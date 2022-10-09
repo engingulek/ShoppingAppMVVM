@@ -134,20 +134,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }else{
             fatalError("Not collectionView")
         }
-        
-     
-        
-        
     }
-    
-    
-    
-    
- 
-
-  
-    
-    
     private func setupUI(){
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
