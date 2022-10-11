@@ -25,7 +25,7 @@
 		7DB4578F28F1A12000CF99AA /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB4578E28F1A12000CF99AA /* APICaller.swift */; };
 		7DB4579428F1B53200CF99AA /* DataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB4579328F1B53200CF99AA /* DataResult.swift */; };
 		7DB625422832CEC1006D1AD7 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB625412832CEC1006D1AD7 /* FilterCollectionViewCell.swift */; };
-		7DDBAF2E28315D5E008BCE1F /* HomePageViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDBAF2D28315D5E008BCE1F /* HomePageViewControllerTest.swift */; };
+		7DBB256228F3096000D1D193 /* HomePageViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB256128F3096000D1D193 /* HomePageViewControllerTest.swift */; };
 		7DDBAF3028316693008BCE1F /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDBAF2F28316693008BCE1F /* ProductListViewModel.swift */; };
 		7DDBAF3328316A6C008BCE1F /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDBAF3228316A6C008BCE1F /* ProductCollectionViewCell.swift */; };
 		7DDBAF3628317E01008BCE1F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7DDBAF3528317E01008BCE1F /* Kingfisher */; };
@@ -68,7 +68,7 @@
 		7DB4578E28F1A12000CF99AA /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7DB4579328F1B53200CF99AA /* DataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResult.swift; sourceTree = "<group>"; };
 		7DB625412832CEC1006D1AD7 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		7DDBAF2D28315D5E008BCE1F /* HomePageViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewControllerTest.swift; sourceTree = "<group>"; };
+		7DBB256128F3096000D1D193 /* HomePageViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewControllerTest.swift; sourceTree = "<group>"; };
 		7DDBAF2F28316693008BCE1F /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		7DDBAF3228316A6C008BCE1F /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		7DE142892826B1FF00AEFBDB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -176,9 +176,17 @@
 		7D3CE04728315CF50087458F /* ShoppingAppMVVMTests */ = {
 			isa = PBXGroup;
 			children = (
-				7DDBAF2D28315D5E008BCE1F /* HomePageViewControllerTest.swift */,
+				7DA35A6028F5A3D600846F9E /* Controllers */,
 			);
 			path = ShoppingAppMVVMTests;
+			sourceTree = "<group>";
+		};
+		7DA35A6028F5A3D600846F9E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7DBB256128F3096000D1D193 /* HomePageViewControllerTest.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		7DB4578D28F1A10E00CF99AA /* Manager */ = {
@@ -277,6 +285,7 @@
 					};
 					7D3CE04528315CF50087458F = {
 						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1330;
 						TestTargetID = 7D1A6BDB28269BBC00D377EE;
 					};
 				};
@@ -396,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DDBAF2E28315D5E008BCE1F /* HomePageViewControllerTest.swift in Sources */,
+				7DBB256228F3096000D1D193 /* HomePageViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,14 +615,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34G99QRS57;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.engingulek.ShoppingAppMVVMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShoppingAppMVVM.app/ShoppingAppMVVM";
@@ -624,10 +640,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34G99QRS57;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.engingulek.ShoppingAppMVVMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

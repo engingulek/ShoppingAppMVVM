@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol ProductCollectinViewCellDelegate {
-    func addProduct(indexPath:IndexPath)
+    func addProduct(indexPath:Int)
 }
 
 
@@ -22,14 +22,14 @@ class ProductCollectionViewCell : UICollectionViewCell {
     @IBOutlet weak var productGenderLabel : UILabel!
     
     var delegate : ProductCollectinViewCellDelegate?
-    var indexPath : IndexPath?
+    var indexPathRow : Int?
     
     
   
     
     
     @IBAction func addCartButtonAction(_ sender: Any) {
-        delegate?.addProduct(indexPath: indexPath!)
+        delegate?.addProduct(indexPath: indexPathRow!)
     }
     
    

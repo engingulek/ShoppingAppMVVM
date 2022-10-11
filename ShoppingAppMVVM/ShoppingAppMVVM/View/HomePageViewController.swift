@@ -15,7 +15,7 @@ class HomePageViewController: UIViewController,CategoryDelegate {
     private var selectedCategory : CategoryViewModel? = nil
     
     @IBOutlet weak var filterCollectionView : UICollectionView!
-    private var filterNameList = ["All","Woman","Man","Child","Unisex"]
+     var filterNameList = ["All","Woman","Man","Child","Unisex"]
     private var selectedFilterName : String? = nil
     private var selectedSortType : Bool? =  nil
     /// implement ProductListViewModel
@@ -93,6 +93,14 @@ class HomePageViewController: UIViewController,CategoryDelegate {
 
 ///Category CollectionView
 ///  FilterList CollectionView
+
+
+
+
+
+
+
+
 extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSource,ProductCollectinViewCellDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -115,7 +123,7 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             
             cell.productPriceLabel.text = "\(product.productPrice)"
             cell.productGenderLabel.text = product.productGender
-            cell.indexPath = indexPath
+            cell.indexPathRow = indexPath.row
             cell.delegate = self
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.borderWidth = 0.5
@@ -135,6 +143,20 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
             fatalError("Not collectionView")
         }
     }
+    //collectionView cell didSelect
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.filterCollectionView {
+            self.selectedFilterName = self.filterNameList[indexPath.row]
+            getData()
+        }else if (collectionView == self.productCollectionView) {
+        }
+        else{
+            fatalError("Don't select collection view")
+        }
+    }
+    
+    
+    
     private func setupUI(){
         let design :UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -154,27 +176,14 @@ extension HomePageViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     
     
-    //collectionView cell didSelect
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.filterCollectionView {
-            self.selectedFilterName = self.filterNameList[indexPath.row]
-            getData()
-        }else if (collectionView == self.productCollectionView) {
-        }
-        else{
-            fatalError("Don't select collection view")
-        }
-    }
-    
-    
-    func addProduct(indexPath: IndexPath) {
-        self.productListViewModel.addProductToCartList(indexPath: indexPath.row) { result in
+    func addProduct(indexPath: Int) {
+        /*self.productListViewModel.addProductToCartList(indexPath: indexPath) { result in
             if result == nil {
                 print("Error")
             }else{
                 print("Add Success")
             }
-        }
+        }*/
         
     }
     
